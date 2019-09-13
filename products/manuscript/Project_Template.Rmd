@@ -1,5 +1,5 @@
 ---
-title: Dengue Outbreaks in Sri Lanka
+title: An Analysis of Dengue Outbreaks in Sri Lanka
 subtitle: "A Data Analysis Project"
 author: Ian Bachli
 institute: "University of Georgia"
@@ -48,26 +48,19 @@ _Dengue is a disease caused by a family of viruses transmitted to people through
 
 
 ## Description of data and data source
-_The following data is a collective of samples of weekly notified Dengue cases and climate variables in the Colombo district of Sri Lanka between the years of 2008 to 2014. Within the data frame there are 279 rows and 12 variables. During the sample time, the 12 tested variables were:
-- Cases - Total number of notified Dengue cases
-- Year - Year
-- Week - Week number to locate the week within a year
-- TEM - Average temperature of the week(Celcius)
-- TMAX - maximum temperature of the week (Celcius)
-- Tm - Minimum temperature of the week (Celcius)
-- SLP - Sea level pressure
-- H - Relative humidity (%)
-- PP - Precipitation amount (mm)
-- VV - Mean visibility (km)
-- V - Mean wind speed (km/h)
-- VM - Maximum sustained wind speed (Km/h)._
+_The following data is a collective of samples of weekly notified Dengue cases and climate variables in the Colombo district of Sri Lanka between the years of 2008 to 2014. Within the data frame there are 279 rows and 12 variables. During the sample time, the 12 tested variables were: Total number of notified Dengue cases (Cases), Year (Year), Week number to locate the week within a year (Week), Average temperature of the week (TEM), maximum temperature of the week (TMAX), Minimum temperature of the week (Tm), Sea level pressure (SLP), Relative humidity (H), Precipitation amount (PP), Mean visibility (VV), Mean wind speed (V), and Maximum sustained wind speed (VM)._
 
-## Questions/Hypotheses to be addressed
-1 - Does Precipitation attribute to higher Dengue cases?
-2 - Does Maximum Sustained Wind Speed play a role in lower Dengue cases?
-3 - How does Sea Level Pressure affect Dengue and its Vector?
-4 - Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?
-5 - Which variables are the best indicators for Dengue, and can they be applied to similar ecosystems across the world if the vector was introduced?
+_The data was provided by Thiyanga Talagala, and published in 2018, taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie)._
+
+
+
+## Questions/Hypotheses to be Addressed
+1 - Which variables are the best indicators for Dengue?
+2- Can the indicators for Dengue be applied to similar ecosystems across the world devoid of Dengue if the vector was introduced to that area to provide an example as to how many cases of Dengue in those areas we would see?
+3 - Does Maximum Sustained Wind Speed play a role in lower Dengue cases?
+4 - How does Sea Level Pressure affect Dengue and its Vector?
+5 - Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?
+6 - Does Precipitation attribute to higher Dengue cases?
 
 
 
