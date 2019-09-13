@@ -61,6 +61,7 @@ _The data was provided by Thiyanga Talagala, and published in 2018, taken from t
 4 - How does Sea Level Pressure affect Dengue and its Vector?
 5 - Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?
 6 - Does Precipitation attribute to higher Dengue cases?
+7 - What additional variables would be beneficial to include in the dataset for future studies? For example, exact longitude, latitude, etc. 
 
 
 
