@@ -1,7 +1,7 @@
 ---
-title: "Example Template for Data Analysis Project"
-subtitle: ""
-author: Andreas Handel
+title: Dengue Outbreaks in Sri Lanka
+subtitle: "A Data Analysis Project"
+author: Ian Bachli
 institute: "University of Georgia"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -44,13 +44,31 @@ Note that this cited reference will show up at the end of the document, the refe
 # Introduction (required for part 1)
 
 ## General Background Information
-_Provide enough background on your topic that others can understand the why and how of your analysis_ 
+_Dengue is a disease caused by a family of viruses transmitted to people through the bite of an infected Aedes species (Ae. aegypti or Ae. albopictus) mosquito. Symptoms of Dengue fever include severe joint and muscle pain, swollen lymph nodes, headache, fever, exhaustion, and rash. The presence of fever, rash, and headache (the "Dengue Triad") is characteristic of dengue fever. Each year, up to 400 million people get infected with Dengue. Approximately 100 million people get sick from infection, and 22,000 die from severe Dengue. Dengue is caused by one of any of four related viruses: Dengue virus 1, 2, 3, and 4.  For this reason, a person can be infected with a Dengue virus as many as four times within their lifetime. Dengue virus is prevalent throughout the tropics and subtropics; being common in over 100 countries in the world. Forty percent of the world’s population, about 3 billion people, live in areas with a risk of Dengue. Because of this, Dengue is often a leading cause of illness in areas with risk._
+
 
 ## Description of data and data source
-_Describe what the data is, what it contains, where it is from, etc._
+_The following data is a collective of samples of weekly notified Dengue cases and climate variables in the Colombo district of Sri Lanka between the years of 2008 to 2014. Within the data frame there are 279 rows and 12 variables. During the sample time, the 12 tested variables were:
+- Cases - Total number of notified Dengue cases
+- Year - Year
+- Week - Week number to locate the week within a year
+- TEM - Average temperature of the week(Celcius)
+- TMAX - maximum temperature of the week (Celcius)
+- Tm - Minimum temperature of the week (Celcius)
+- SLP - Sea level pressure
+- H - Relative humidity (%)
+- PP - Precipitation amount (mm)
+- VV - Mean visibility (km)
+- V - Mean wind speed (km/h)
+- VM - Maximum sustained wind speed (Km/h)._
 
 ## Questions/Hypotheses to be addressed
-_State the research questions you plan to answer with this analysis_
+1 - Does Precipitation attribute to higher Dengue cases?
+2 - Does Maximum Sustained Wind Speed play a role in lower Dengue cases?
+3 - How does Sea Level Pressure affect Dengue and its Vector?
+4 - Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?
+5 - Which variables are the best indicators for Dengue, and can they be applied to similar ecosystems across the world if the vector was introduced?
+
 
 
 
