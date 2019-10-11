@@ -21,7 +21,7 @@ library(gridExtra)
 Load the processed data from the RDS.
 
 ```{r}
-load("colmozzie.rda")
+load("~/Desktop/epid8060fall2019/IanDBachli-Project/data/processed_data/colmozzie.rda")
 ```
 
 Then take a look at the data. 
@@ -32,7 +32,7 @@ glimpse(colmozzie)
 
 Once the data has been inspected, we can now start taking a look at some variables and how they stack up in an exploratory analysis. To do this, we will need to generate some plots. 
 
-For my first plot, I would like to investigate the Number of Cases of Dengue per Week in the Year to see if there is any correlation to seasonal changes. I will attempt to use a Jitter Plot to look for any correlation. 
+For my first plot, I would like to investigate the Number of Cases of Dengue per Week in the Year to see if there is any correlation to seasonal changes. I will attempt to use a Jitter Plot to look for anything intertesting.
 
 ```{r}
 colmozzie %>% ggplot() + 
@@ -93,6 +93,30 @@ Cases_v_Precipitation
 ggsave(filename = "../../results/Cases_v_Precipitation.png",plot = Cases_v_Precipitation) 
 ```
 
+A big interest of mine was examining the number of cases of Dengue with the Maximum Sustained Wind Speed and Average Wind Speed. My interest in this comes from my theory that because Mosquitos have a harder time flying around in higher wind speeds due to their body mass and strength, there will be less Dengue cases because they cannot locate targets and position themselves in places as easily to spread the disease. First we will examine the Average Wind Speed, then the Maximum Sustained Windspeed.
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = V))
+Cases_v_MeanWindspeed <- ggplot(colmozzie, aes(x = Cases, y = V, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Mean Wind Speed") + xlab("Cases") + ylab("Mean Wind Speed") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_MeanWindspeed
+
+ggsave(filename = "../../results/Cases_v_MeanWindspeed.png",plot = Cases_v_MeanWindspeed) 
+```
+
+Now here is Maximum Sustained Windspeed. 
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = VM))
+Cases_v_MaxWindspeed <- ggplot(colmozzie, aes(x = Cases, y = VM, color = Cases)) + geom_line(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Maximum Sustained Wind Speed") + xlab("Cases") + ylab("Maximum Sustained Wind Speed") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_MaxWindspeed
+
+ggsave(filename = "../../results/Cases_v_MaxWindspeed.png",plot = Cases_v_MaxWindspeed) 
+```
+
 Below are just some test plots that I just wanted to test out in order to to see what they would look like in other graph types. 
 
 ```{r}
@@ -107,11 +131,3 @@ geom_bar(mapping = aes(x = Week, y = Cases), color = "Navy", stat = "identity") 
 ```
 
 
-
-
-To Do List:
-
-- Add more commentary to this Rmd. 
-- Paste a few good figures into manuscript.
-- Add citations.
-- Basic R sript for realtime visualization analysis-Objective 4-may be more appropriate for final analysis section.
