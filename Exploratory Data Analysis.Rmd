@@ -8,7 +8,6 @@ output: word_document
 Load the required libraries for exploratory analysis.
 
 ```{r}
-library(readxl)
 library(dplyr)
 library(tidyverse)
 library(forcats)
@@ -75,10 +74,44 @@ Let's check out the number of Cases in Comparison to the Sea Level Pressure.
 ```{r}
 colmozzie %>% ggplot() + 
   geom_jitter(aes(x = Cases, y = SLP))
-Cases_v_Sea_Level_Pressure <- ggplot(colmozzie, aes(x = Cases, y = SLP, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Sea Level Pressure") + xlab("Cases") + ylab("Sea Level Pressure") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+Cases_v_SLP <- ggplot(colmozzie, aes(x = Cases, y = SLP, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Sea Level Pressure") + xlab("Cases") + ylab("Sea Level Pressure") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
 
-Cases_v_Sea_Level_Pressure
+Cases_v_SLP
 
-ggsave(filename = "../../results/Cases_v_Sea_Level_Pressure.png",plot = Cases_v_Sea_Level_Pressure) 
+ggsave(filename = "../../results/Cases_v_SLP.png",plot = Cases_v_SLP) 
 ```
 
+Next let's look at the comparison of the Number of Cases against the Precipitation Level.
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = PP))
+Cases_v_Precipitation <- ggplot(colmozzie, aes(x = Cases, y = PP, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Percipitation") + xlab("Cases") + ylab("Precipitation") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_Precipitation
+
+ggsave(filename = "../../results/Cases_v_Precipitation.png",plot = Cases_v_Precipitation) 
+```
+
+Below are just some test plots that I just wanted to test out in order to to see what they would look like in other graph types. 
+
+```{r}
+ggplot(colmozzie) + 
+  geom_line(mapping = aes(x = Cases, y = H), color = "green")
+```
+
+```{r}
+ggplot(colmozzie) +
+geom_bar(mapping = aes(x = Week, y = Cases), color = "Navy", stat = "identity") + 
+  ylab("Cases")
+```
+
+
+
+
+To Do List:
+
+- Add more commentary to this Rmd. 
+- Paste a few good figures into manuscript.
+- Add citations.
+- Basic R sript for realtime visualization analysis-Objective 4-may be more appropriate for final analysis section.
