@@ -1,0 +1,84 @@
+---
+title: "Exploratory Data Analysis"
+author: "Ian Bachli"
+date: "10/9/2019"
+output: word_document
+---
+
+Load the required libraries for exploratory analysis.
+
+```{r}
+library(readxl)
+library(dplyr)
+library(tidyverse)
+library(forcats)
+library(ggthemes)
+library(knitr)
+library(naniar)
+library(broom)
+library(gridExtra)
+```
+
+Load the processed data from the RDS.
+
+```{r}
+load("colmozzie.rda")
+```
+
+Then take a look at the data. 
+
+```{r}
+glimpse(colmozzie)
+```
+
+Once the data has been inspected, we can now start taking a look at some variables and how they stack up in an exploratory analysis. To do this, we will need to generate some plots. 
+
+For my first plot, I would like to investigate the Number of Cases of Dengue per Week in the Year to see if there is any correlation to seasonal changes. I will attempt to use a Jitter Plot to look for any correlation. 
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter (aes(x = Week, y = Cases))
+Cases_v_Week <- ggplot(colmozzie, aes(x = Week, y = Cases, color = Week)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Week") + xlab("Week of the Year") + ylab("Cases") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_Week
+
+ggsave(filename = "../../results/Cases_v_Week.png",plot = Cases_v_Week) 
+```
+
+Next we will take a look at the number of Cases present when comparing it to the Average Temperature of the Week. 
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = TEM))
+Cases_v_Temperature <- ggplot(colmozzie, aes(x = Cases, y = TEM, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Average Weekly Temperature") + xlab("Number of Cases") + ylab("Temperature in Celcius") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_Temperature
+
+ggsave(filename = "../../results/Cases_v_Temperature.png",plot = Cases_v_Temperature) 
+
+```
+
+Now here is a graph comparing the Number of Cases of Dengue in comparison to the Humidity. 
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = H))
+Cases_v_Humidity <- ggplot(colmozzie, aes(x = Cases, y = H, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Humidity") + xlab("Cases") + ylab("Humidity Level") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_Humidity
+
+ggsave(filename = "../../results/Cases_v_Humidity.png",plot = Cases_v_Humidity) 
+```
+
+Let's check out the number of Cases in Comparison to the Sea Level Pressure. 
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = SLP))
+Cases_v_Sea_Level_Pressure <- ggplot(colmozzie, aes(x = Cases, y = SLP, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Sea Level Pressure") + xlab("Cases") + ylab("Sea Level Pressure") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_Sea_Level_Pressure
+
+ggsave(filename = "../../results/Cases_v_Sea_Level_Pressure.png",plot = Cases_v_Sea_Level_Pressure) 
+```
+
