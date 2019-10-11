@@ -1,0 +1,35 @@
+---
+title: "DengueProcessing_cleaning"
+author: "Ian Bachli"
+date: "10/7/2019"
+output:
+  word_document: default
+  html_document: default
+---
+
+Install and Load the following packages and run them. 
+
+```{r}
+library(readxl)
+library(dplyr)
+library(tidyverse)
+library(forcats)
+library(ggthemes)
+library(knitr)
+library(ggplot2)
+```
+
+Load the data. This path is relative to the processing code folder in the project directory.
+
+```{r}
+load("~/Desktop/epid8060fall2019/IanDBachli-Project/data/processed_data/colmozzie.rda")
+```
+
+Next we need to take a look at the data and see how it looks. Since my data had mostly been cleaned from the original source, most of the data looks pretty well fit to the R model. We have 12 variables and 279 observations. Additionally, we already have our variables in a nice working format. Our following variables are as follows: Total number of notified Dengue cases (Cases), Year (Year), Week number to locate the week within a year (Week), Average temperature of the week (TEM), maximum temperature of the week (TMAX), Minimum temperature of the week (Tm), Sea level pressure (SLP), Relative humidity (H), Precipitation amount (PP), Mean visibility (VV), Mean wind speed (V), and Maximum sustained wind speed (VM). We can glance over the data to look for any obscure outliers as well.
+
+
+```{r}
+glimpse(colmozzie)
+```
+
+Now that our data looks good, we have a decent starting point for beginning to examine the data. 
