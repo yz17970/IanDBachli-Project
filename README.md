@@ -6,5 +6,6 @@ To Do List:
 - Create more plots and determine which ones work best for my work. 
 - Write more explanations. 
 - Make Graphs look Better. 
-
+- Fix Path to Loading Data from File.
+- Figure out Save Issue.
 
