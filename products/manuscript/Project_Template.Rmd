@@ -70,12 +70,20 @@ _The data was provided by Thiyanga Talagala, and published in 2018, taken from t
 
 _In most research papers, results and methods are separate. You can combine them here if you find it easier. You are also welcome to structure things such that those are separate sections._
 
+-- Methods will include examining the variables in detail to see which ones are the best predictors and indicators for Dengue. Comparing each other variable to the number of cases will give us some decent figures to examine in order to make our analysis work. 
+
 
 ## Data aquisition
 _As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
 
+-- The data was provided by Thiyanga Talagala, and published in 2018, taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie).
+
+
+
 ## Data import and cleaning
 _Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what each file does. The files themselves should be commented well so everyone can follow along._
+
+-- Our data did not need nearly any cleaning due to it being from another source that was using R script. We might clean some data later on if necessary, but I have not found any reason to do so just yet. 
 
 ## Univariate analysis
 _Use a combination of text/tables/figures to explore and describe your data. You should produce plots or tables or other summary quantities for most of your variables. You definitely need to do it for the important variables, i.e. if you have main exposure or outcome variables, those need to be explored. Depending on the total number of variables in your dataset, explore all or some of the others._
