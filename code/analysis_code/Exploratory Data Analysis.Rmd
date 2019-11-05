@@ -21,7 +21,9 @@ library(gridExtra)
 Load the processed data from the RDS.
 
 ```{r}
-load("~/Desktop/epid8060fall2019/IanDBachli-Project/data/processed_data/colmozzie.rda")
+CleanData <- readRDS("../../data/processed_data/processeddata.rds")
+
+colmozzie <- (CleanData)
 ```
 
 Then take a look at the data. 
@@ -42,6 +44,16 @@ Cases_v_Week <- ggplot(colmozzie, aes(x = Week, y = Cases, color = Week)) + geom
 Cases_v_Week
 
 ggsave(filename = "../../results/Cases_v_Week.png",plot = Cases_v_Week) 
+```
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter (aes(x = Week_Continuous, y = Cases))
+Cases_v_WeekContinuous <- ggplot(colmozzie, aes(x = Week, y = Cases, color = Week_Continuous)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Week Continuous") + xlab("Weeks over 5 Years") + ylab("Cases") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_WeekContinuous
+
+ggsave(filename = "../../results/Cases_v_WeekContinuous.png",plot = Cases_v_WeekContinuous) 
 ```
 
 Next we will take a look at the number of Cases present when comparing it to the Average Temperature of the Week. 
