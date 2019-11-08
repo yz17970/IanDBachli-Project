@@ -7,9 +7,10 @@ Figures can be found within the Analysis of the Code File, as well as the Result
 
 To Do List: 
 
-- Clean Data of Weeks Variable? Is It necessary?
+
 - Create more plots and determine which ones work best for my work. 
+- Improve quality of Graphs. 
 - Write more explanations. 
-- Make Graphs look Better!
+
 
 

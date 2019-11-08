@@ -1,0 +1,227 @@
+---
+title: "Tree Model"
+author: "Ian Bachli"
+date: "11/7/2019"
+output: html_document
+---
+
+This script measures the efficacy of citizen science data gathered in this study by investigating the individual water quality parameters that characterize the seperation of observations into the selected outcome variable island_side. Selection of island side will be evaluated using tree-based modeling to detemrine which water quality parameters strongly influence the the seperation of water systems. The goal of this analysis is not to determine which parameters are the most powerful for influencing data seperation, but rather to measure the most powerful variables and compare them to known conditions of water quality seperation. If the tree analysis of our citizen science data produces similar keystone predictor variables to our known strong predictors of water quality this will suggest that the citizen science data used is consistent with the actual condition of Key Largo waters thus showing providing a measure of efficacy for the usage of this citizen science data.
+
+## Model Preparation
+
+Start by loading the libraries.
+```{r add libraries}
+library('tidyr')
+library('data.table')
+library('dplyr')
+library('forcats')
+library('ggplot2')
+library('corrplot') #to make a correlation plot. You can use other options/packages.
+library('visdat') #for missing data visualization
+library('earth')
+library('lattice')
+library('caret') #for model fitting
+```
+
+Load the data and take a look.
+```{r load and glimpse}
+colmozzie <- readRDS("../../data/processed_data/processeddata.rds")
+glimpse(colmozzie)
+```
+
+## Data visualization
+
+Next, let's create a few plots showing the outcome and the predictors. 
+
+```{r plots-1}
+#write code that produces plots showing our outcome of interest on the y-axis and each numeric predictor on the x-axis.
+colmozzie %>% select_if(is.numeric)->plots1
+plots1.m = reshape2::melt(plots1, id.var="Cases")
+plots1.m %>%
+  ggplot(.,aes(x=value, y=Cases)) +
+  geom_line() +
+  facet_wrap(plots1.m$variable)
+```
+
+Another useful check is to see if there are strong correlations between some of the numeric predictors. That might indicate collinearity, and some models can't handle that very well. In such cases, one might want to remove a predictor. We'll create a correlation plot of the numeric variables to inspect this.
+
+## Data splitting 
+Depending on the data and question, we might want to reserve some of the data for a final validation/testing step or not. Here, to illustrate this process and the idea of reserving some data for the very end, we'll split things into a train and test set. All the modeling will be done with the train set, and final evaluation of the model(s) happens on the test set. We use the `caret` package for this. 
+
+```{r split-data}
+#this code does the data splitting. I still assume that your data is stored in the `d` object.
+#uncomment to run
+set.seed(123)
+trainset <- caret::createDataPartition(y = colmozzie$Cases, p = 0.7, list = FALSE)
+data_train = colmozzie[trainset,] #extract observations/rows for training, assign to new variable
+data_test = colmozzie[-trainset,] #do the same for the test set
+```
+
+## Null Model
+
+Now let's begin with the model fitting. We'll start by looking at a _null model_, which is just the mean of the data. This is, of course, a stupid "model" but provides some baseline for performance.
+
+```{r clean-na}
+#write code that computes the RMSE for a null model, which is just the mean of the outcome
+#remember that from now on until the end, everything happens with the training data
+lm_fit <- train(Cases ~ .,
+                data = data_train, 
+                method = "lm")
+fc_pred <- predict(lm_fit, data_train)
+lm_fit
+postResample(pred = fc_pred, obs = data_train$Cases)
+```
+
+## Single predictor models
+
+Now we'll fit the outcome to each predictor one at a time. To evaluate our model performance, we will use cross-validation and the caret package. Note that we just fit a linear model. `caret` itself is not a model. Instead, it provides an interface that allows easy access to many different models and has functions to do a lot of steps quickly - as you will see below. Most of the time, you can do all our work through the `caret` (or `mlr`) workflow. The problem is that because `caret` calls another package/function, sometimes things are not as clear, especially when you get an error message. So occasionally, if you know you want to use a specific model and want more control over things, you might want to not use `caret` and instead go straight to the model function (e.g. `lm` or `glm` or...). We've done a bit of that before, for the remainder of the class we'll mostly access underlying functions through `caret`.
+
+```{r}
+set.seed(1111) #makes each code block reproducible
+fitControl <- trainControl(method="repeatedcv",number=5,repeats=5) #setting CV method for caret
+Npred <- ncol(data_train)-1 # number of predictors
+resultmat <- data.frame(Variable = names(data_train)[-1], RMSE = rep(0,Npred)) 
+    #store values for RMSE for each variable
+#reordering the dataset to put the outcome in the first column
+#data_train <- data_train[,c(14,1:13,13)]
+for (n in 2:ncol(data_train)) #loop over each predictor. For this to work, outcome must be in 1st column
+{
+  fit1 <- train(as.formula(paste("Cases ~",names(data_train)[n])), 
+                 data = data_train, method = "lm", trControl = fitControl) 
+ resultmat[n-1,2]= fit1$results$RMSE  
+}
+print(resultmat)
+```
+
+## Multi-Predictor Models
+
+Now let's perform fitting with multiple predictors. Use the same setup as the code above to fit the outcome to all predictors at the same time. Do that for 3 different models: linear (`lm`), regression splines (`earth`), K nearest neighbor (`knn`). You might have to install/load some extra R packages for that. If that's the case, `caret` will tell you.
+
+```{r}
+set.seed(1111) #makes each code block reproducible
+#write code that uses the train function in caret to fit the outcome to all predictors using the 3 methods specified.
+#report the RMSE for each method. Note that knn and earth perform some model tuning (we'll discuss this soon) and report multiple RMSE. Use the lowest value.
+#Earth method
+fitearth <- train(Cases~., data=data_train,method="earth", trControl = fitControl)
+fitearth 
+#Lm method
+fitlm <- train(Cases~., data=data_train,method="lm", trControl = fitControl)
+fitlm
+#Knn method
+fitknn <- train(Cases~., data=data_train,method="knn", trControl = fitControl)
+fitknn 
+```
+
+## Multi-predictor models with pre-processing
+
+Above, we fit outcome and predictors without doing anything to them. Let's see if some further processing improves the performance of our multi-predictor models.
+
+First, we look at near-zero variance predictors. Those are predictors that have very little variation. For instance, for a categorical predictor, if 99% of the values are a single category, it is likely not a useful predictor. A similar idea holds for continuous predictors. If they have very little spread, they might likely not contribute much 'signal' to our fitting and instead mainly contain noise. Some models, such as trees, which we'll cover soon, can ignore useless predictors and just remove them. Other models, e.g., linear models, are generally performing better if we remove such useless predictors.
+
+Note that in general, one should apply all these processing steps to the training data only. Otherwise, you would use information from the test set to decide on data manipulations for all data (called data leakage). It is a bit hard to say when to make the train/test split. Above, we did a good bit of cleaning on the full dataset before we split. One could argue that one should split right at the start, then do the cleaning. However, this doesn't work for certain procedures (e.g., removing observations with NA). 
+
+```{r}
+#write code using the caret function `nearZeroVar` to look at potential uninformative predictors. Set saveMetrics to TRUE. Look at the results 
+nzerov<-nearZeroVar(data_train, saveMetrics= TRUE)
+nzerov
+nzerov[nzerov$nzerov,][1:10,]
+dim(data_train)
+```
+
+You'll see that several variables are flagged as having near-zero variance. Look for instance at `Deaths`, you'll see that almost all outbreaks have zero deaths. It is a judgment call if we should remove all those flagged as near-zero-variance or not. For this exercise, we will.
+
+
+```{r}
+#write code that removes all variables with near zero variance from the data 
+nzerov <- nearZeroVar(data_train)
+FDT <- data_train[, -nzerov]
+dim(FDT)
+```
+
+You should be left with 13 variables (including the outcome).
+
+
+Next, we noticed during our exploratory analysis that it might be useful to center and scale predictors. So let's do that now. With caret, one can do that by providing the `preProc` setting inside the `train` function. Set it to center and scale the data, then run the 3 models from above again.
+
+
+```{r processed-fit}
+#write code that repeats the multi-predictor fits from above, but this time applies centering and scaling of variables.
+#look at the RMSE for the new fits
+#For `earth` method
+fitearth2 <- train(Cases~., data=colmozzie,method="earth", trControl = fitControl,
+                preProc = c("center","scale"))
+fitearth2
+#For `lm` method
+fitlm2 <- train(Cases~., data=colmozzie,method="lm", trControl = fitControl,
+                preProc = c("center","scale"))
+fitlm2
+ 
+#For `knn`
+fitknn2 <- train(Cases~., data=colmozzie,method="knn", trControl = fitControl,
+                preProc = c("center","scale"))
+fitknn2 
+```
+
+So it looks like the linear mode got a bit better, KNN actually got worse, and MARS didn't change much. Since for KNN, "the data is the model", removing some predictors might have had a detrimental impact. Though to say something more useful, I would want to look much closer into what's going on and if these pre-processing steps are useful or not. For this exercise, let's move on.
+
+## Model uncertainty
+
+We can look at the uncertainty in model performance, e.g., the RMSE. Let's look at it for the models fit to the un-processed data.
+
+```{r uncertainty}
+#Use the `resamples` function in caret to extract uncertainty from the 3 models fit to the data  that doesn't have predictor pre-processing, then plot it
+resampledata <- resamples(list(Flm1 = fitlm,
+                            Fe1 = fitearth,
+                            Fk1 = fitknn))
+densityplot(resampledata, metric="RMSE")
+```
+
+It seems that the model uncertainty for the outcome is fairly narrow for all models. We can (and in a real setting should) do further explorations to decide which model to choose. This is based part on what the model results are, and part on what we want. If we want a very simple, interpretable model, we'd likely use the linear model. If we want a model that has better performance, we might use MARS or - with the un-processed dataset - KNN.
+
+
+## Residual plots
+
+For this exercise, let's just pick one model. We'll go with the best performing one, namely KNN (fit to non-pre-processed data). Let's take a look at the residual plot.
+
+```{r}
+#Write code to get model predictions for the outcome on the training data, and plot it as function of actual outcome values.
+#also compute residuals (the difference between prediction and actual outcome) and plot that.
+fitted4 <- train(Cases~., data=data_train,method="knn", trControl = fitControl)
+fitted4
+ggplot()+
+  geom_point(aes(x=data_train$Cases, y=fitted4$trainingData$.outcome))
+ggplot()+
+  geom_point(aes(y=resid(fitted4), x=data_train$Cases))
+```
+
+Both plots look ok, predicted vs. outcome is along the 45-degree line, and the residual plot shows no major pattern.
+
+
+## Final model evaluation
+
+Let's do a final check, evaluate the performance of our final model on the test set.
+
+```{r}
+#Write code that computes model predictions and for test data, then compute SSR and RMSE.
+# Using this, https://cran.r-project.org/web/packages/ssr/vignettes/ssr-package-vignette.html, seems to be pretty close to what we are looking for.
+#Write code that computes model predictions and for test data, then compute SSR and RMSE.
+finalfitted <- train(fracinf~., data=data_test,method="knn", trControl = fitControl)
+finalfitted
+plot(finalfitted)
+testSSR<-sum((finalfitted$trainingData$.outcome-mean(finalfitted$trainingData$.outcome))^2)
+std.error(resid(fitkrfinal))
+y_train <- data_train$fracinf
+SSR_y_train <- sum((y_train-mean(y_train))^2)
+cor(fitted(fitted4), y_train)^2
+1-sum(residuals(fitted4)^2)/SSR_y_train
+pred_test <- predict(finalfitted, newdata = data_test)
+y_test <- data_test$fracinf
+SSR_y_test <- sum((y_test-mean(y_test))^2)
+cor(pred_test, y_test)^2
+1- 28* var(pred_test-y_test)/SSR_y_train
+1- 28* var(pred_test-y_test)/SSR_y_test
+```
+
+Since we have a different number of observations, the result isn't expected to be quite the same as for the training data (despite dividing by sample size to account for that). But it's fairly close, and surprisingly not actually worse. So the KNN model seems to be reasonable at predicting. Now if its performance is 'good enough' is a scientific question.
+
+
