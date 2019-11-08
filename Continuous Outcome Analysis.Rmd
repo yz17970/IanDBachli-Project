@@ -5,8 +5,6 @@ date: "11/7/2019"
 output: html_document
 ---
 
-This script measures the efficacy of citizen science data gathered in this study by investigating the individual water quality parameters that characterize the seperation of observations into the selected outcome variable island_side. Selection of island side will be evaluated using tree-based modeling to detemrine which water quality parameters strongly influence the the seperation of water systems. The goal of this analysis is not to determine which parameters are the most powerful for influencing data seperation, but rather to measure the most powerful variables and compare them to known conditions of water quality seperation. If the tree analysis of our citizen science data produces similar keystone predictor variables to our known strong predictors of water quality this will suggest that the citizen science data used is consistent with the actual condition of Key Largo waters thus showing providing a measure of efficacy for the usage of this citizen science data.
-
 ## Model Preparation
 
 Start by loading the libraries.
@@ -32,7 +30,6 @@ glimpse(colmozzie)
 ## Data visualization
 
 Next, let's create a few plots showing the outcome and the predictors. 
-
 ```{r plots-1}
 #write code that produces plots showing our outcome of interest on the y-axis and each numeric predictor on the x-axis.
 colmozzie %>% select_if(is.numeric)->plots1
@@ -205,17 +202,18 @@ Let's do a final check, evaluate the performance of our final model on the test 
 #Write code that computes model predictions and for test data, then compute SSR and RMSE.
 # Using this, https://cran.r-project.org/web/packages/ssr/vignettes/ssr-package-vignette.html, seems to be pretty close to what we are looking for.
 #Write code that computes model predictions and for test data, then compute SSR and RMSE.
-finalfitted <- train(fracinf~., data=data_test,method="knn", trControl = fitControl)
+finalfitted <- train(colmozzie, data=data_test,method="knn", trControl = fitControl)
 finalfitted
 plot(finalfitted)
+
 testSSR<-sum((finalfitted$trainingData$.outcome-mean(finalfitted$trainingData$.outcome))^2)
 std.error(resid(fitkrfinal))
-y_train <- data_train$fracinf
+y_train <- data_train$Cases
 SSR_y_train <- sum((y_train-mean(y_train))^2)
 cor(fitted(fitted4), y_train)^2
 1-sum(residuals(fitted4)^2)/SSR_y_train
 pred_test <- predict(finalfitted, newdata = data_test)
-y_test <- data_test$fracinf
+y_test <- data_test$Cases
 SSR_y_test <- sum((y_test-mean(y_test))^2)
 cor(pred_test, y_test)^2
 1- 28* var(pred_test-y_test)/SSR_y_train
