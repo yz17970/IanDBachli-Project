@@ -49,12 +49,26 @@ ggsave(filename = "../../results/Cases_v_Week.png",plot = Cases_v_Week)
 ```{r}
 colmozzie %>% ggplot() + 
   geom_jitter (aes(x = Week_Continuous, y = Cases))
-Cases_v_WeekContinuous <- ggplot(colmozzie, aes(x = Week, y = Cases, color = Week_Continuous)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Week Continuous") + xlab("Weeks over 5 Years") + ylab("Cases") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+Cases_v_WeekContinuous <- ggplot(colmozzie, aes(x = Week_Continuous, y = Cases, color = Week_Continuous)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Week Continuous") + xlab("279 Weeks over 6 Years") + ylab("Cases") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
 
 Cases_v_WeekContinuous
 
 ggsave(filename = "../../results/Cases_v_WeekContinuous.png",plot = Cases_v_WeekContinuous) 
 ```
+
+Here is the Cases Per Year to determine if there is any trend.
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter (aes(x = Year, y = Cases))
+Cases_v_Year <- ggplot(colmozzie, aes(x = Year, y = Cases, color = Year)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Year") + xlab("Year Span") + ylab("Cases") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_Year
+
+ggsave(filename = "../../results/Cases_v_Year.png",plot = Cases_v_Year) 
+```
+
+
 
 Next we will take a look at the number of Cases present when comparing it to the Average Temperature of the Week. 
 
@@ -68,6 +82,19 @@ Cases_v_Temperature
 ggsave(filename = "../../results/Cases_v_Temperature.png",plot = Cases_v_Temperature) 
 
 ```
+
+Now let's check out the Temperature Max. 
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = TMAX))
+Cases_v_TemperatureMax <- ggplot(colmozzie, aes(x = Cases, y = TMAX, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Maximum Weekly Temperature") + xlab("Number of Cases") + ylab("Temperature in Celcius") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_TemperatureMax
+
+ggsave(filename = "../../results/Cases_v_TemperatureMax.png",plot = Cases_v_TemperatureMax) 
+
+```
+
 
 Now here is a graph comparing the Number of Cases of Dengue in comparison to the Humidity. 
 
@@ -133,7 +160,12 @@ Below are just some test plots that I just wanted to test out in order to to see
 
 ```{r}
 ggplot(colmozzie) + 
-  geom_line(mapping = aes(x = Cases, y = H), color = "green")
+  geom_line(mapping = aes(x = Week_Continuous, y = Cases), color = "Navy")
+```
+
+```{r}
+ggplot(colmozzie) + 
+  geom_line(mapping = aes(x = Week, y = Cases), color = "Navy")
 ```
 
 ```{r}

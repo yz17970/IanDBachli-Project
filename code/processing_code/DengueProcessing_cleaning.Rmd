@@ -36,14 +36,14 @@ glimpse(RawData)
 WeekEdit <-  RawData %>% dplyr::mutate(Week_Continuous = c(1:279))
 ```
 
-Above, I added a new variable to show the weeks as a continuum instead of resetting to 1 at the beginning of each year. 
+Above, I added a new variable to show the weeks as a continuum instead of resetting to Week 1 at the beginning of each year. 
 
 Now that our data looks good, we have a decent starting point for beginning to examine the data. 
 
 ```{r}
 colmozzie <- (WeekEdit)
 
-saveRDS(RawData, file="../../data/processed_data/processeddata.rds")
+saveRDS(colmozzie, file="../../data/processed_data/processeddata.rds")
 ```
 
 
