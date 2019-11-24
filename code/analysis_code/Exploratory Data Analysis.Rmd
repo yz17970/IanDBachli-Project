@@ -149,12 +149,26 @@ Now here is Maximum Sustained Windspeed.
 ```{r}
 colmozzie %>% ggplot() + 
   geom_jitter(aes(x = Cases, y = VM))
-Cases_v_MaxWindspeed <- ggplot(colmozzie, aes(x = Cases, y = VM, color = Cases)) + geom_line(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Maximum Sustained Wind Speed") + xlab("Cases") + ylab("Maximum Sustained Wind Speed") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+Cases_v_MaxWindspeed <- ggplot(colmozzie, aes(x = Cases, y = VM, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Maximum Sustained Wind Speed") + xlab("Cases") + ylab("Maximum Sustained Wind Speed") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
 
 Cases_v_MaxWindspeed
 
 ggsave(filename = "../../results/Cases_v_MaxWindspeed.png",plot = Cases_v_MaxWindspeed) 
 ```
+
+Finally, we will take a look at the number of Reported Dengue Cases per Week versus the Mean Visibility.
+
+```{r}
+colmozzie %>% ggplot() + 
+  geom_jitter(aes(x = Cases, y = VV))
+Cases_v_MeanVisibility <- ggplot(colmozzie, aes(x = Cases, y = VV, color = Cases)) + geom_violin(width = 1) + geom_jitter(alpha = 0.50) + ggtitle("Cases vs MeanVisibility") + xlab("Cases") + ylab("MeanVisibility") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+
+Cases_v_MeanVisibility
+
+ggsave(filename = "../../results/Cases_v_MeanVisibility.png",plot = Cases_v_MeanVisibility) 
+```
+
+
 
 Below are just some test plots that I just wanted to test out in order to to see what they would look like in other graph types. 
 

@@ -55,41 +55,162 @@ _The data was provided by Thiyanga Talagala, and published in 2018, taken from t
 
 
 ## Questions/Hypotheses to be Addressed
-1 - Which variable/variables are the best indicators for Dengue?
-2- Can the indicators for Dengue be applied to similar ecosystems across the world devoid of Dengue if the vector was introduced to that area to provide an example as to how many cases of Dengue in those areas we would see?
-3 - Does Maximum Sustained Wind Speed play a role in lower Dengue cases?
-4 - How does Sea Level Pressure affect Dengue and its Vector?
-5 - Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?
-6 - Does Precipitation attribute to higher Dengue cases?
-7 - What additional variables would be beneficial to include in the dataset for future studies? For example, exact longitude, latitude, etc. 
-
-
+_Examine Seasonal Changes across the Timespan of the Data Collection to observe any noticeable changes that may play a role in the number of Cases of Dengue recorded._
+_1 - Which variable/variables are the best indicators for Dengue?_
+_2- Can the indicators for Dengue be applied to similar ecosystems across the world devoid of Dengue if the vector was introduced to that area to provide an example as to how many cases of Dengue in those areas we would see?_
+_3 - Does Maximum Sustained Wind Speed play a role in lower Dengue cases?_
+_4 - How does Sea Level Pressure affect Dengue and its Vector?_
+_5 - Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?_
+_6 - Does Precipitation attribute to higher Dengue cases?_
+_7 - What additional variables would be beneficial to include in the dataset for future studies? For example, exact longitude, latitude, etc._
 
 
 # Methods and Results
-
-_In most research papers, results and methods are separate. You can combine them here if you find it easier. You are also welcome to structure things such that those are separate sections._
-
--- Methods will include examining the variables in detail to see which ones are the best predictors and indicators for Dengue. Comparing each other variable to the number of cases will give us some decent figures to examine in order to make our analysis work. 
+_The data was provided by Thiyanga Talagala taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. Data was further cleaned by myself to better fit my analysis. Data was analyzed using R Studio software and various R packages listed throughout the repository provided by Github. Methods will include examining the variables in detail to see which ones are the best predictors and indicators for Dengue. Comparing each other variable to the number of cases will give us some decent figures to examine in order to make our analysis work._
 
 
-## Data aquisition
-_As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
-
--- The data was provided by Thiyanga Talagala, and published in 2018, taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie).
-
-
-## Data import and cleaning
-_Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what each file does. The files themselves should be commented well so everyone can follow along._
-
--- Our data did not need nearly any cleaning due to it being from another source that was using R script save for an additional variable added to look at the collective of Weeks for each Year over the 5 Year Span. We might clean some more data or add more variables later on if necessary, but I have not found any reason to do so just yet. 
+## Data Aquisition, Import, and Cleaning
+_The data was provided by Thiyanga Talagala, and published in 2018, taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie). Due to the fact our data was very clean from the start, we did not require a lot of script to purify our data. I did add an additional variable that counts the weeks in a continous fashion in order to examine the data over the course of the years of collection. You can examine the cleaning script in the code folder inside the DengueProcessing_cleaning.Rmd._
 
 ## Univariate analysis
 _Use a combination of text/tables/figures to explore and describe your data. You should produce plots or tables or other summary quantities for most of your variables. You definitely need to do it for the important variables, i.e. if you have main exposure or outcome variables, those need to be explored. Depending on the total number of variables in your dataset, explore all or some of the others._
 
+_An Exploratory analysis of the cleaned Dengue dataset shows some general trends across the variables measured against the number of Cases of Dengue reported each week, and identifies specific aspects of the code that possibly warrant a deeper analysis. The first variables we examined will be listed below. Each variable was compared to the Reported Number of Dengue Cases Weekly._
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Reported Weekly Each Year.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_Year.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Reported Each Week.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_Week.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Reported Each Week Continuously.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_WeekContinuous.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Average Temperature.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_Temperature.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Average Temperature.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_TemperatureMax.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Sea Level Pressure.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_SLP.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Precipitation.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_Precipitation.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Mean Wind Speed.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_MeanWindspeed.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Maximum Wind Speed.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_MaxWindspeed.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Relative Humidity.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_Humidity.png")
+```
+
+```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Mean Visibility.", echo=FALSE}
+knitr::include_graphics("../../results/Cases_v_MeanVisibility.png")
+```
+
 ## Bivariate analysis
 _Create plots or tables and compute simple statistics (e.g. t-tests, simple regression model with 1 predictor, etc.) to look for associations between your outcome(s) and each individual predictor variable_
 
+_A Bivariate Analysis is the simultaneous analysis of two variables (attributes). It explores the concept of relationship between two variables, whether there exists an association and the strength of this association, or whether there are differences between two variables and the significance of these differences. For this analysis, we will examine a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V)._ 
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature versus Average Precipitation.", echo=FALSE}
+knitr::include_graphics("../../results/Temp_vs_Precip.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature versus Mean Windspeed.", echo=FALSE}
+knitr::include_graphics("../../results/Temp_vs_MeanWS.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature versus Relative Humidity.", echo=FALSE}
+knitr::include_graphics("../../results/Temp_vs_Humid.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Precipitation versus the Mean Windspeed.", echo=FALSE}
+knitr::include_graphics("../../results/Precip_vs_MeanWS.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Relative Humidity versus Average Precipitation.", echo=FALSE}
+knitr::include_graphics("../../results/Humid_v_Precip.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Relative Humidity versus Mean Windspeed.", echo=FALSE}
+knitr::include_graphics("../../results/Humid_vs_MeanWS.png")
+```
+
+_From what we can see, we can make some general assumptions based on the graphs as well as what we know to be common  knowledge about weather effects. Looking at the graphs, Lower Temperatures are usually correlated with more more Percipitation, and Higher Humidity is correlated with higher Percipitation. While the other graphs do not seem to have much correlation._
+
+### Seasonal Changes
+
+_Another aspect I want to look at would be examining seasonal changes and seeing as how they compare to the number of Cases of Dengue. Using this we can hopefully find some additional correlations and break down the information to get a more in depth visualization of how the number of cases of Dengue changes seasonally._
+
+_Here we examine the Temperature changes across the years._
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature Across Years.", echo=FALSE}
+knitr::include_graphics("../../results/Year_vs_Temp.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week Continuously.", echo=FALSE}
+knitr::include_graphics("../../results/WeekCont_vs_Temp.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week of the Year.", echo=FALSE}
+knitr::include_graphics("../../results/Week_vs_Temp.png")
+```
+
+_Our temperatures seem to fluctuate normally throughout the months and years present. Now let's check out some other variables in a comparison before finally comparing it to the Cases of Dengue. What we are looking for is something interesting to account for months with higher cases of Dengue. Here we will check out how the Precipitation changes over time._
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature Across Years.", echo=FALSE}
+knitr::include_graphics("../../results/Year_vs_Precip.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week Continuously.", echo=FALSE}
+knitr::include_graphics("../../results/WeekCont_vs_Precip.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week of the Year.", echo=FALSE}
+knitr::include_graphics("../../results/Week_vs_Precip.png")
+```
+
+_Now we will examine the changes in Humidity._
+
+```{r 1Fig, fig.cap="Comparison of Relative Humidity Across Years.", echo=FALSE}
+knitr::include_graphics("../../results/Year_vs_Humid.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Relative Humidity Across Each Week Continuously.", echo=FALSE}
+knitr::include_graphics("../../results/WeekCont_vs_Humid.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Relative Humidity Across Each Week of the Year.", echo=FALSE}
+knitr::include_graphics("../../results/Week_vs_Humid.png")
+```
+
+_Here are the changes in the Mean Windspeed._
+
+```{r 1Fig, fig.cap="Comparison of Mean Windspeed Across Years.", echo=FALSE}
+knitr::include_graphics("../../results/Year_vs_Windspeed.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Mean Windspeed Across Each Week Continuously.", echo=FALSE}
+knitr::include_graphics("../../results/WeekCont_vs_Windspeed.png")
+```
+
+```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week of the Year.", echo=FALSE}
+knitr::include_graphics("../../results/Week_vs_Windspeed.png")
+```
 
 ## Full analysis
 _Use one or several suitable statistical/machine learning methods to analyze your data and to produce meaningful figures, tables, etc. This might again be code that is best placed in one or several separate R scripts that need to be well documented. You can then load the results produced by this code_
