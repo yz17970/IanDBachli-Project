@@ -1,5 +1,5 @@
 ---
-title: An Analysis of Dengue Outbreaks in Sri Lanka
+title: An Analysis of Dengue Outbreaks in the Colombo Disctrict, Sri Lanka
 subtitle: "A Data Analysis Project"
 author: Ian Bachli
 institute: "University of Georgia"
@@ -44,30 +44,26 @@ Note that this cited reference will show up at the end of the document, the refe
 # Introduction (required for part 1)
 
 ## General Background Information
-_Dengue is a disease caused by a family of viruses transmitted to people through the bite of an infected Aedes species (Ae. aegypti or Ae. albopictus) mosquito. Symptoms of Dengue fever include severe joint and muscle pain, swollen lymph nodes, headache, fever, exhaustion, and rash. The presence of fever, rash, and headache (the "Dengue Triad") is characteristic of dengue fever. Each year, up to 400 million people get infected with Dengue. Approximately 100 million people get sick from infection, and 22,000 die from severe Dengue. Dengue is caused by one of any of four related viruses: Dengue virus 1, 2, 3, and 4.  For this reason, a person can be infected with a Dengue virus as many as four times within their lifetime. Dengue virus is prevalent throughout the tropics and subtropics; being common in over 100 countries in the world. Forty percent of the world’s population, about 3 billion people, live in areas with a risk of Dengue. Because of this, Dengue is often a leading cause of illness in areas with risk._
+_Dengue is a disease caused by a family of viruses transmitted to people through the bite of an infected Aedes species (Ae. aegypti or Ae. albopictus) mosquito. Symptoms of Dengue fever include severe joint and muscle pain, swollen lymph nodes, headache, fever, exhaustion, and rash. The presence of fever, rash, and headache (the "Dengue Triad") is characteristic of dengue fever. Each year, up to 400 million people get infected with Dengue. Approximately 100 million people get sick from infection, and 22,000 die from severe Dengue. Dengue is caused by one of any of four related viruses: Dengue virus 1, 2, 3, and 4.  For this reason, a person can be infected with a Dengue virus as many as four times within their lifetime. Dengue virus is prevalent throughout the tropics and subtropics; being common in over 100 countries in the world. Forty percent of the world’s population, about 3 billion people, live in areas with a risk of Dengue. Because of this, Dengue is often a leading cause of illness in areas with risk. It is clear that Dengue places a significant socioeconomic and disease burden on many tropical and subtropical regions of the world. It is currently regarded as the most important arboviral disease internationally as over 50% of the world’s population live in areas where they are at risk of the disease, and approximately 50% live in dengue endemic countries._
+_Dengue outbreaks occur in many countries around the world, varied among the Americas, Africa, the Middle East, Asia, and the Pacific Islands. Many of these countries at risk are below an elevation of 6,500 feet. Sri Lanka is among the countries in which the Center for Disease Control labels Frequent/Continuous for the number of outbreaks of Dengue year to year. In 2010, the WHO reported 26,824 Cases of Dengue in Sri Lanka, leading to a reported 192 Deaths. In a more recent account in Sri Lanka, there were 180,000 reported cases in 2017; the majority of cases being reported from the Western province. The highest numbers of Dengue cases were reported during the 20th week of 2017. Sri Lankan health authorities warned that the country was facing a Dengue epidemic with at least 301 patients dead. It is clearly evident from data collated by WHO that, in SEA, an overall expansion of dengue has occurred over the last decade. In 2003, eight countries in SEA had reported cases of dengue and, by 2009, all SEA member countries excluding the Democratic People’s Republic of Korea reported indigenous cases. Epidemics continue to persist on regular 3–5 year cycles throughout SEA, and the number of reported cases continues to increase along with the severity of cases in many member countries._
 
-
-## Description of data and data source
+## Description of Data & Data Source
 _The following data is a collective of samples of weekly notified Dengue cases and climate variables in the Colombo district of Sri Lanka between the years of 2008 to 2014. Within the data frame there are 279 rows and 12 variables. During the sample time, the 12 tested variables were: Total number of notified Dengue cases (Cases), Year (Year), Week number to locate the week within a year (Week), Week_Continuous across 6 years, Average temperature of the week (TEM), maximum temperature of the week (TMAX), Minimum temperature of the week (Tm), Sea level pressure (SLP), Relative humidity (H), Precipitation amount (PP), Mean visibility (VV), Mean wind speed (V), and Maximum sustained wind speed (VM). An additional variable was added by myself, named "Week Continuous", to show a full timescale of changes across the years, week by week._
 
 _The data was provided by Thiyanga Talagala, and published in 2018, taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie)._
 
-
-
 ## Questions/Hypotheses to be Addressed
 _Examine Seasonal Changes across the Timespan of the Data Collection to observe any noticeable changes that may play a role in the number of Cases of Dengue recorded._
-_1 - Which variable/variables are the best indicators for Dengue?_
-_2- Can the indicators for Dengue be applied to similar ecosystems across the world devoid of Dengue if the vector was introduced to that area to provide an example as to how many cases of Dengue in those areas we would see?_
-_3 - Does Maximum Sustained Wind Speed play a role in lower Dengue cases?_
-_4 - How does Sea Level Pressure affect Dengue and its Vector?_
-_5 - Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?_
-_6 - Does Precipitation attribute to higher Dengue cases?_
-_7 - What additional variables would be beneficial to include in the dataset for future studies? For example, exact longitude, latitude, etc._
-
+_Which variable/variables are the best indicators for Dengue?_
+_Can the indicators for Dengue be applied to similar ecosystems across the world devoid of Dengue if the vector was introduced to that area to provide an example as to how many cases of Dengue in those areas we would see?_
+_Does Maximum Sustained Wind Speed play a role in lower Dengue cases?_
+_How does Sea Level Pressure affect Dengue and its Vector?_
+_Does the Vector prefer warmer or cooler temperatures in tropical/subtropical zones when spreading Dengue?_
+_Does Precipitation attribute to higher Dengue cases?_
+_What additional variables would be beneficial to include in the dataset for future studies? For example, exact longitude, latitude, etc._
 
 # Methods and Results
-_The data was provided by Thiyanga Talagala taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. Data was further cleaned by myself to better fit my analysis. Data was analyzed using R Studio software and various R packages listed throughout the repository provided by Github. Methods will include examining the variables in detail to see which ones are the best predictors and indicators for Dengue. Comparing each other variable to the number of cases will give us some decent figures to examine in order to make our analysis work._
-
+_The data was provided by Thiyanga Talagala taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. Data was further cleaned by myself to better fit my analysis. Data was analyzed using R Studio software and various R packages listed throughout the repository provided by Github. Methods will include examining the variables in detail to see which ones are the best predictors and indicators for Dengue. Comparing each other variable to the number of cases of Dengue provides us with some ideas on what variables seem to have the most weight when it comes to identifying Dengue predictors, or at least which variables correlate with the number of Cases of Dengue._
 
 ## Data Aquisition, Import, and Cleaning
 _The data was provided by Thiyanga Talagala, and published in 2018, taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie). Due to the fact our data was very clean from the start, we did not require a lot of script to purify our data. I did add an additional variable that counts the weeks in a continous fashion in order to examine the data over the course of the years of collection. You can examine the cleaning script in the code folder inside the DengueProcessing_cleaning.Rmd._
@@ -121,10 +117,13 @@ knitr::include_graphics("../../results/Cases_v_Humidity.png")
 knitr::include_graphics("../../results/Cases_v_MeanVisibility.png")
 ```
 
-## Bivariate analysis
+## Bivariate Analysis
 _Create plots or tables and compute simple statistics (e.g. t-tests, simple regression model with 1 predictor, etc.) to look for associations between your outcome(s) and each individual predictor variable_
 
-_A Bivariate Analysis is the simultaneous analysis of two variables (attributes). It explores the concept of relationship between two variables, whether there exists an association and the strength of this association, or whether there are differences between two variables and the significance of these differences. For this analysis, we will examine a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V)._ 
+_A Bivariate Analysis is the simultaneous analysis of two variables (attributes). It explores the concept of relationship between two variables, whether there exists an association and the strength of this association, or whether there are differences between two variables and the significance of these differences._
+
+### Climate Condition Comparisons
+_For the first part of this analysis, we will examine a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V). We are looking for any general trends among these climate conditions._
 
 ```{r 1Fig, fig.cap="Comparison of Average Temperature versus Average Precipitation.", echo=FALSE}
 knitr::include_graphics("../../results/Temp_vs_Precip.png")
@@ -150,10 +149,9 @@ knitr::include_graphics("../../results/Humid_v_Precip.png")
 knitr::include_graphics("../../results/Humid_vs_MeanWS.png")
 ```
 
-_From what we can see, we can make some general assumptions based on the graphs as well as what we know to be common  knowledge about weather effects. Looking at the graphs, Lower Temperatures are usually correlated with more more Percipitation, and Higher Humidity is correlated with higher Percipitation. While the other graphs do not seem to have much correlation._
+_From what we can see, we can make some general assumptions based on the graphs as well as what we know to be common  knowledge about weather effects. Looking at the graphs, Lower Temperatures are usually correlated with more more Percipitation, and Higher Humidity is correlated with higher Percipitation._
 
 ### Seasonal Changes
-
 _Another aspect I want to look at would be examining seasonal changes and seeing as how they compare to the number of Cases of Dengue. Using this we can hopefully find some additional correlations and break down the information to get a more in depth visualization of how the number of cases of Dengue changes seasonally._
 
 _Here we examine the Temperature changes across the years._
@@ -212,7 +210,7 @@ knitr::include_graphics("../../results/WeekCont_vs_Windspeed.png")
 knitr::include_graphics("../../results/Week_vs_Windspeed.png")
 ```
 
-## Full analysis
+## Full Analysis
 _Use one or several suitable statistical/machine learning methods to analyze your data and to produce meaningful figures, tables, etc. This might again be code that is best placed in one or several separate R scripts that need to be well documented. You can then load the results produced by this code_
 
 # Discussion
