@@ -21,6 +21,7 @@ library('visdat') #for missing data visualization
 library('earth')
 library('lattice')
 library('caret') #for model fitting
+library('fs')
 ```
 
 Load the data and take a look.
@@ -178,7 +179,13 @@ ggplot()+
 ggplot()+
   geom_point(aes(y=resid(fitted4), x=data_train$Cases))
 
-ggsave(filename = "../../results/fitted4.png",plot = fitted4) 
+KNNResidualPlot <- fitted4
+
+png("KNNResidualPlot.png", width = 600, height = 600)
+print (KNNResidualPlot)
+dev.off()
+
+file_move("./KNNResidualPlot.png", "../../results/KNNResidualPlot.png")
 ```
 
 Both plots look ok, predicted vs. outcome is along the 45-degree line, and the residual plot shows no major pattern.

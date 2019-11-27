@@ -1,5 +1,5 @@
 ---
-title: An Analysis of Dengue Outbreaks in the Colombo District of Sri Lanka
+title: An Analysis of Climate Conditions surrounding Dengue Outbreaks in Colombo, Sri Lanka
 subtitle: "A Data Analysis Project"
 author: Ian Bachli
 institute: "University of Georgia"
@@ -158,6 +158,8 @@ knitr::include_graphics("../../results/Humid_v_Precip.png")
 ```{r 18Fig, fig.cap="Comparison of Relative Humidity versus Mean Windspeed.", echo=FALSE}
 knitr::include_graphics("../../results/Humid_vs_MeanWS.png")
 ```
+
+
 
 _From what we can see, we can make some general assumptions based on the graphs as well as what we know to be common  knowledge about weather effects. Looking at the graphs, Lower Temperatures are usually correlated with more more Percipitation, and Higher Humidity is correlated with higher Percipitation._
 
