@@ -1,5 +1,5 @@
 ---
-title: An Analysis of Dengue Outbreaks in the Colombo Disctrict, Sri Lanka
+title: An Analysis of Dengue Outbreaks in the Colombo District of Sri Lanka
 subtitle: "A Data Analysis Project"
 author: Ian Bachli
 institute: "University of Georgia"
@@ -15,7 +15,7 @@ csl: ../apa.csl
 
 
 # Summary/Abstract
-_Write a summary of your project._
+_Dengue is often regarded globally as the most important mosquito-borne viral disease. The virus and its vectors have now become widely distributed throughout tropical and subtropical regions of the world, particularly over the last half-century. Significant geographic expansion has been coupled with rapid increases in incident cases, epidemics, and hyperendemicity, leading to the more severe forms of dengue. Transmission of dengue is now present in every World Health Organization (WHO) region of the world and more than 125 countries are known to be dengue endemic. The true impact of dengue globally is difficult to ascertain due to factors such as inadequate disease surveillance, misdiagnosis, and low levels of reporting. Currently available data likely grossly underestimates the social, economic, and disease burden. Estimates of the global incidence of dengue infections per year have ranged between 50 million and 200 million; however, recent estimates using cartographic approaches suggest this number is closer to almost 400 million. The expansion of dengue is expected to increase due to factors such as the modern dynamics of climate change, globalization, travel, trade, socioeconomics, settlement and also viral evolution. Here we examine a collection of Data from the District of Colombo in Sri Lanka, looking at Recorded Cases of Dengue each week from 2008-2014._
 
 # Illustrating setup
 _This section is only there to show how to insert results from other places in the project and how to cite figures and other references. Delete this whole section at some point._
@@ -45,7 +45,7 @@ Note that this cited reference will show up at the end of the document, the refe
 
 ## General Background Information
 _Dengue is a disease caused by a family of viruses transmitted to people through the bite of an infected Aedes species (Ae. aegypti or Ae. albopictus) mosquito. Symptoms of Dengue fever include severe joint and muscle pain, swollen lymph nodes, headache, fever, exhaustion, and rash. The presence of fever, rash, and headache (the "Dengue Triad") is characteristic of dengue fever. Each year, up to 400 million people get infected with Dengue. Approximately 100 million people get sick from infection, and 22,000 die from severe Dengue. Dengue is caused by one of any of four related viruses: Dengue virus 1, 2, 3, and 4.  For this reason, a person can be infected with a Dengue virus as many as four times within their lifetime. Dengue virus is prevalent throughout the tropics and subtropics; being common in over 100 countries in the world. Forty percent of the world’s population, about 3 billion people, live in areas with a risk of Dengue. Because of this, Dengue is often a leading cause of illness in areas with risk. It is clear that Dengue places a significant socioeconomic and disease burden on many tropical and subtropical regions of the world. It is currently regarded as the most important arboviral disease internationally as over 50% of the world’s population live in areas where they are at risk of the disease, and approximately 50% live in dengue endemic countries._
-_Dengue outbreaks occur in many countries around the world, varied among the Americas, Africa, the Middle East, Asia, and the Pacific Islands. Many of these countries at risk are below an elevation of 6,500 feet. Sri Lanka is among the countries in which the Center for Disease Control labels Frequent/Continuous for the number of outbreaks of Dengue year to year. In 2010, the WHO reported 26,824 Cases of Dengue in Sri Lanka, leading to a reported 192 Deaths. In a more recent account in Sri Lanka, there were 180,000 reported cases in 2017; the majority of cases being reported from the Western province. The highest numbers of Dengue cases were reported during the 20th week of 2017. Sri Lankan health authorities warned that the country was facing a Dengue epidemic with at least 301 patients dead. It is clearly evident from data collated by WHO that, in SEA, an overall expansion of dengue has occurred over the last decade. In 2003, eight countries in SEA had reported cases of dengue and, by 2009, all SEA member countries excluding the Democratic People’s Republic of Korea reported indigenous cases. Epidemics continue to persist on regular 3–5 year cycles throughout SEA, and the number of reported cases continues to increase along with the severity of cases in many member countries._
+_Dengue outbreaks occur in many countries around the world, varied among the Americas, Africa, the Middle East, Asia, and the Pacific Islands. Many of these countries at risk are below an elevation of 6,500 feet. Sri Lanka is among the countries in which the Center for Disease Control labels Frequent/Continuous for the number of outbreaks of Dengue year to year. In 2010, the WHO reported 26,824 Cases of Dengue in Sri Lanka, leading to a reported 192 Deaths. In a more recent account in Sri Lanka, there were 180,000 reported cases in 2017; the majority of cases being reported from the Western province. The highest numbers of Dengue cases were reported during the 20th week of 2017. Sri Lankan health authorities warned that the country was facing a Dengue epidemic with at least 301 patients dead. It is clearly evident from data collated by WHO that, in South East Asia, an overall expansion of dengue has occurred over the last decade. In 2003, eight countries in SEA had reported cases of dengue and, by 2009, all SEA member countries excluding the Democratic People’s Republic of Korea reported indigenous cases. Epidemics continue to persist on regular 3–5 year cycles throughout SEA, and the number of reported cases continues to increase along with the severity of cases in many member countries._
 
 ## Description of Data & Data Source
 _The following data is a collective of samples of weekly notified Dengue cases and climate variables in the Colombo district of Sri Lanka between the years of 2008 to 2014. Within the data frame there are 279 rows and 12 variables. During the sample time, the 12 tested variables were: Total number of notified Dengue cases (Cases), Year (Year), Week number to locate the week within a year (Week), Week_Continuous across 6 years, Average temperature of the week (TEM), maximum temperature of the week (TMAX), Minimum temperature of the week (Tm), Sea level pressure (SLP), Relative humidity (H), Precipitation amount (PP), Mean visibility (VV), Mean wind speed (V), and Maximum sustained wind speed (VM). An additional variable was added by myself, named "Week Continuous", to show a full timescale of changes across the years, week by week._
@@ -80,55 +80,55 @@ knitr::include_graphics("../../results/Cases_v_Year.png")
 _Here we examine the distribution of recorded cases of Dengue in the Colombo District of Sri Lanka from years 2008 - 2014._
 
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Reported Each Week.", echo=FALSE}
+```{r 2Fig, fig.cap="Number of Dengue Cases Reported Each Week.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_Week.png")
 ```
 
 _Here is a distribution of the average recorded cases per week across the years of the study._
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Reported Each Week Continuously.", echo=FALSE}
+```{r 3Fig, fig.cap="Number of Dengue Cases Reported Each Week Continuously.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_WeekContinuous.png")
 ```
 
 _Here is a distribution of the number of recorded Dengue Cases across the 279 Weeks within the 2008-2014 year span._
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Average Temperature.", echo=FALSE}
+```{r 4Fig, fig.cap="Number of Dengue Cases Weekly against the Average Temperature.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_Temperature.png")
 ```
 
 _Here we examine how the Temperature compares to the Number of Recorded Cases of Dengue._
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Temperature Maximum.", echo=FALSE}
+```{r 5Fig, fig.cap="Number of Dengue Cases Weekly against the Temperature Maximum.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_TemperatureMax.png")
 ```
 
 _Here we examine the comparison of the number of Record Dengue Cases Weekly against the Weekly Temperature Maximum._
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Sea Level Pressure.", echo=FALSE}
+```{r 6Fig, fig.cap="Number of Dengue Cases Weekly against the Sea Level Pressure.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_SLP.png")
 ```
 
 _Above is the comparison of Sea Level Pressure differences against the number of recorded Cases of Dengue each week._
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Precipitation.", echo=FALSE}
+```{r 7Fig, fig.cap="Number of Dengue Cases Weekly against Precipitation.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_Precipitation.png")
 ```
 
 _Here is look at the comparison of Dengue Fever
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against the Mean Wind Speed.", echo=FALSE}
+```{r 8Fig, fig.cap="Number of Dengue Cases Weekly against the Mean Wind Speed.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_MeanWindspeed.png")
 ```
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Maximum Wind Speed.", echo=FALSE}
+```{r 9Fig, fig.cap="Number of Dengue Cases Weekly against Maximum Wind Speed.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_MaxWindspeed.png")
 ```
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Relative Humidity.", echo=FALSE}
+```{r 10Fig, fig.cap="Number of Dengue Cases Weekly against Relative Humidity.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_Humidity.png")
 ```
 
-```{r 1Fig, fig.cap="Number of Dengue Cases Weekly against Mean Visibility.", echo=FALSE}
+```{r 11Fig, fig.cap="Number of Dengue Cases Weekly against Mean Visibility.", echo=FALSE}
 knitr::include_graphics("../../results/Cases_v_MeanVisibility.png")
 ```
 
@@ -137,30 +137,36 @@ _Create plots or tables and compute simple statistics (e.g. t-tests, simple regr
 
 _A Bivariate Analysis is the simultaneous analysis of two variables (attributes). It explores the concept of relationship between two variables, whether there exists an association and the strength of this association, or whether there are differences between two variables and the significance of these differences._
 
+_First we will look at a simple Correlation among our variables._
+
+```{r 12Fig, fig.cap="Correlation among Variables.", echo=FALSE}
+knitr::include_graphics("../../results/DengueCorr.png")
+```
+
 ### Climate Condition Comparisons
 _For the first part of this analysis, we will examine a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V). We are looking for any general trends among these climate conditions._
 
-```{r 1Fig, fig.cap="Comparison of Average Temperature versus Average Precipitation.", echo=FALSE}
+```{r 13Fig, fig.cap="Comparison of Average Temperature versus Average Precipitation.", echo=FALSE}
 knitr::include_graphics("../../results/Temp_vs_Precip.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Temperature versus Mean Windspeed.", echo=FALSE}
+```{r 14Fig, fig.cap="Comparison of Average Temperature versus Mean Windspeed.", echo=FALSE}
 knitr::include_graphics("../../results/Temp_vs_MeanWS.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Temperature versus Relative Humidity.", echo=FALSE}
+```{r 15Fig, fig.cap="Comparison of Average Temperature versus Relative Humidity.", echo=FALSE}
 knitr::include_graphics("../../results/Temp_vs_Humid.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Precipitation versus the Mean Windspeed.", echo=FALSE}
+```{r 16Fig, fig.cap="Comparison of Average Precipitation versus the Mean Windspeed.", echo=FALSE}
 knitr::include_graphics("../../results/Precip_vs_MeanWS.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Relative Humidity versus Average Precipitation.", echo=FALSE}
+```{r 17Fig, fig.cap="Comparison of Relative Humidity versus Average Precipitation.", echo=FALSE}
 knitr::include_graphics("../../results/Humid_v_Precip.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Relative Humidity versus Mean Windspeed.", echo=FALSE}
+```{r 18Fig, fig.cap="Comparison of Relative Humidity versus Mean Windspeed.", echo=FALSE}
 knitr::include_graphics("../../results/Humid_vs_MeanWS.png")
 ```
 
@@ -171,57 +177,57 @@ _Another aspect I want to look at would be examining seasonal changes and seeing
 
 _Here we examine the Temperature changes across the time._
 
-```{r 1Fig, fig.cap="Comparison of Average Temperature Across Years.", echo=FALSE}
+```{r 19Fig, fig.cap="Comparison of Average Temperature Across Years.", echo=FALSE}
 knitr::include_graphics("../../results/Year_vs_Temp.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week Continuously.", echo=FALSE}
+```{r 20Fig, fig.cap="Comparison of Average Temperature Across Each Week Continuously.", echo=FALSE}
 knitr::include_graphics("../../results/WeekCont_vs_Temp.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week of the Year.", echo=FALSE}
+```{r 21Fig, fig.cap="Comparison of Average Temperature Across Each Week of the Year.", echo=FALSE}
 knitr::include_graphics("../../results/Week_vs_Temp.png")
 ```
 
 _Our temperatures seem to fluctuate normally throughout the months and years present. Now let's check out some other variables in a comparison before finally comparing it to the Cases of Dengue. What we are looking for is something interesting to account for months with higher cases of Dengue. Here we will check out how the Precipitation changes over time._
 
-```{r 1Fig, fig.cap="Comparison of Average Precipitation Across Years.", echo=FALSE}
+```{r 22Fig, fig.cap="Comparison of Average Precipitation Across Years.", echo=FALSE}
 knitr::include_graphics("../../results/Year_vs_Precip.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Precipitation Across Each Week Continuously.", echo=FALSE}
+```{r 23Fig, fig.cap="Comparison of Average Precipitation Across Each Week Continuously.", echo=FALSE}
 knitr::include_graphics("../../results/WeekCont_vs_Precip.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Precipitation Across Each Week of the Year.", echo=FALSE}
+```{r 24Fig, fig.cap="Comparison of Average Precipitation Across Each Week of the Year.", echo=FALSE}
 knitr::include_graphics("../../results/Week_vs_Precip.png")
 ```
 
 _Now we will examine the changes in Humidity._
 
-```{r 1Fig, fig.cap="Comparison of Relative Humidity Across Years.", echo=FALSE}
+```{r 25Fig, fig.cap="Comparison of Relative Humidity Across Years.", echo=FALSE}
 knitr::include_graphics("../../results/Year_vs_Humid.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Relative Humidity Across Each Week Continuously.", echo=FALSE}
+```{r 26Fig, fig.cap="Comparison of Relative Humidity Across Each Week Continuously.", echo=FALSE}
 knitr::include_graphics("../../results/WeekCont_vs_Humid.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Relative Humidity Across Each Week of the Year.", echo=FALSE}
+```{r 27Fig, fig.cap="Comparison of Relative Humidity Across Each Week of the Year.", echo=FALSE}
 knitr::include_graphics("../../results/Week_vs_Humid.png")
 ```
 
 _Here are the changes in the Mean Windspeed._
 
-```{r 1Fig, fig.cap="Comparison of Mean Windspeed Across Years.", echo=FALSE}
+```{r 28Fig, fig.cap="Comparison of Mean Windspeed Across Years.", echo=FALSE}
 knitr::include_graphics("../../results/Year_vs_Windspeed.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Mean Windspeed Across Each Week Continuously.", echo=FALSE}
+```{r 29Fig, fig.cap="Comparison of Mean Windspeed Across Each Week Continuously.", echo=FALSE}
 knitr::include_graphics("../../results/WeekCont_vs_Windspeed.png")
 ```
 
-```{r 1Fig, fig.cap="Comparison of Average Temperature Across Each Week of the Year.", echo=FALSE}
+```{r 30Fig, fig.cap="Comparison of Average Temperature Across Each Week of the Year.", echo=FALSE}
 knitr::include_graphics("../../results/Week_vs_Windspeed.png")
 ```
 

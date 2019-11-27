@@ -23,6 +23,7 @@ library(broom)
 library(gridExtra)
 library(zoo)
 library(ggpubr)
+library(DataExplorer)
 ```
 
 Load the data and take a look at the variables.
@@ -32,31 +33,59 @@ colmozzie <- readRDS("../../data/processed_data/processeddata.rds")
 glimpse(colmozzie)
 ```
 
+```{r}
+plot_histogram(colmozzie)
+```
+
+
 ## Bivariate Visualization 
 
-Bivariate Analysis is the simultaneous analysis of two variables (attributes). It explores the concept of relationship between two variables, whether there exists an association and the strength of this association, or whether there are differences between two variables and the significance of these differences. For this analysis, we will examine a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V).
+Bivariate Analysis is the simultaneous analysis of two variables (attributes). It explores the concept of relationship between two variables, whether there exists an association and the strength of this association, or whether there are differences between two variables and the significance of these differences. 
+
+First, we will start with a correlation analysis.
+
+```{r}
+DengueCorr <- plot_correlation(colmozzie)
+
+ggsave(filename = "../../results/DengueCorr.png",plot = DengueCorr) 
+```
+
+
+For this analysis, we will examine a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V).
 
 ```{r Comparisons}
 Temp_vs_Humid <- ggplot(colmozzie, aes(x = TEM, y = H, color = TEM)) + geom_jitter()
 Temp_vs_Humid
 
+ggsave(filename = "../../results/Temp_vs_Humid.png",plot = Temp_vs_Humid) 
+
 Temp_vs_Precip <- ggplot(colmozzie, aes(x = TEM, y = PP, color = PP)) + geom_jitter()
 Temp_vs_Precip
+
+ggsave(filename = "../../results/Temp_vs_Precip.png",plot = Temp_vs_Precip) 
 
 Temp_vs_MeanWS <- ggplot(colmozzie, aes(x = TEM, y = V, color = V)) + geom_jitter()
 Temp_vs_MeanWS
 
+ggsave(filename = "../../results/Temp_vs_MeanWS.png",plot = Temp_vs_MeanWS) 
+
 Humid_vs_Precip <- ggplot(colmozzie, aes(x = H, y = PP, color = PP)) + geom_jitter()
 Humid_vs_Precip
+
+ggsave(filename = "../../results/Humid_vs_Precip.png",plot = Humid_vs_Precip) 
 
 Humid_vs_MeanWS <- ggplot(colmozzie, aes(x = H, y = V, color = V)) + geom_jitter()
 Humid_vs_MeanWS
 
+ggsave(filename = "../../results/Humid_vs_MeanWS.png",plot = Humid_vs_MeanWS) 
+
 Precip_vs_MeanWS <- ggplot(colmozzie, aes(x = PP, y = V, color = V)) + geom_jitter()
 Precip_vs_MeanWS
+
+ggsave(filename = "../../results/Precip_vs_MeanWS.png",plot = Precip_vs_MeanWS) 
 ```
 
-From what we can see, we can make some general assumptions based on the graphs as well as what we know to be common knowledge about weather effects. Looking at the graphs, Lower Temperatures are usually correlated with more more Percipitation, and Higher Humidity is correlated with higher Percipitation. While the other graphs do not seem to have much correlation.
+From what we can see, we can make some general assumptions based on the graphs as well as what we know to be common knowledge about weather effects. Looking at the graphs, Higher Humidity is correlated with higher Percipitation to some degree. While the other graphs do not seem to have much correlation.
 
 ## Seasonal Changes
 
@@ -65,14 +94,20 @@ Another aspect I want to look at would be examining seasonal changes and seeing 
 We will start with monthly data to view seasons.
 
 ```{r Seasonal Temperature Changes}
-Year_vs_Temp <- ggplot(colmozzie, aes(x = Year, y = TEM, color = TEM)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(20, 40)) + geom_smooth(se = FALSE) + xlab("Year") + ylab("Average Weekly Temperature (C)") + labs(color = "TEM")
+Year_vs_Temp <- ggplot(colmozzie, aes(x = Year, y = TEM, color = TEM)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(20, 30)) + geom_smooth(se = FALSE) + xlab("Year") + ylab("Average Weekly Temperature (C)") + labs(color = "TEM")
 Year_vs_Temp
 
-WeekCont_vs_Temp <- ggplot(colmozzie, aes(x = Week_Continuous, y = TEM, color = TEM)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(20, 40)) + geom_smooth(se = FALSE) + xlab("Weeks From 2009 to 2014") + ylab("Average Weekly Temperature (C)") + labs(color = "TEM")
+ggsave(filename = "../../results/Year_vs_Temp.png",plot = Year_vs_Temp) 
+
+WeekCont_vs_Temp <- ggplot(colmozzie, aes(x = Week_Continuous, y = TEM, color = TEM)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(20, 30)) + geom_smooth(se = FALSE) + xlab("Weeks From 2009 to 2014") + ylab("Average Weekly Temperature (C)") + labs(color = "TEM")
 WeekCont_vs_Temp
 
-Week_vs_Temp <- ggplot(colmozzie, aes(x = Week, y = TEM, color = TEM)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(20, 40)) + geom_smooth(se = FALSE) + xlab("Weeks of the Year") + ylab("Average Weekly Temperature (C)") + labs(color = "TEM")
+ggsave(filename = "../../results/WeekCont_vs_Temp.png",plot = WeekCont_vs_Temp) 
+
+Week_vs_Temp <- ggplot(colmozzie, aes(x = Week, y = TEM, color = TEM)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(20, 30)) + geom_smooth(se = FALSE) + xlab("Weeks of the Year") + ylab("Average Weekly Temperature (C)") + labs(color = "TEM")
 Week_vs_Temp
+
+ggsave(filename = "../../results/Week_vs_Temp.png",plot = Week_vs_Temp) 
 ```
 
 Our temperatures seem to fluctuate normally throughout the months and years present. Now let's check out some other variables in a comparison before finally comparing it to the Cases of Dengue. What we are looking for is something interesting to account for months with higher cases of Dengue. Here we will check out how the Precipitation changes over time. 
@@ -81,11 +116,17 @@ Our temperatures seem to fluctuate normally throughout the months and years pres
 Year_vs_Precip <- ggplot(colmozzie, aes(x = Year, y = PP, color = PP)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 50)) + geom_smooth(se = FALSE) + xlab("Year") + ylab("Average Weekly Precipitation") + labs(color = "PP")
 Year_vs_Precip
 
-WeekCont_vs_Precip <- ggplot(colmozzie, aes(x = Week_Continuous, y = PP, color = PP)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 50)) + geom_smooth(se = FALSE) + xlab("Weeks From 2009 to 2014") + ylab("Average Weekly Precipitation") + labs(color = "PP")
-WeekCont_vs_Prercip
+ggsave(filename = "../../results/Year_vs_Precip.png",plot = Year_vs_Precip) 
+
+WeekCont_vs_Precip <- ggplot(colmozzie, aes(x = Week_Continuous, y = PP, color = PP)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 50)) + geom_smooth(se = FALSE) + xlab("Weeks From 2008 to 2014") + ylab("Average Weekly Precipitation") + labs(color = "PP")
+WeekCont_vs_Precip
+
+ggsave(filename = "../../results/WeekCont_vs_Precip.png",plot = WeekCont_vs_Precip) 
 
 Week_vs_Precip <- ggplot(colmozzie, aes(x = Week, y = PP, color = PP)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 50)) + geom_smooth(se = FALSE) + xlab("Weeks of the Year") + ylab("Average Weekly Precipitation") + labs(color = "PP")
 Week_vs_Precip
+
+ggsave(filename = "../../results/Week_vs_Precip.png",plot = Week_vs_Precip) 
 ```
 
 Now let's check out Humidity.
@@ -94,24 +135,38 @@ Now let's check out Humidity.
 Year_vs_Humid <- ggplot(colmozzie, aes(x = Year, y = H, color = H)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(50, 100)) + geom_smooth(se = FALSE) + xlab("Year") + ylab("Average Weekly Humidity") + labs(color = "PP")
 Year_vs_Humid
 
+ggsave(filename = "../../results/Year_vs_Humid.png",plot = Year_vs_Humid) 
+
 WeekCont_vs_Humid <- ggplot(colmozzie, aes(x = Week_Continuous, y = H, color = H)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(50, 100)) + geom_smooth(se = FALSE) + xlab("Weeks From 2009 to 2014") + ylab("Average Weekly Humidity") + labs(color = "PP")
 WeekCont_vs_Humid
 
+ggsave(filename = "../../results/WeekCont_vs_Humid.png",plot = WeekCont_vs_Humid) 
+
 Week_vs_Humid <- ggplot(colmozzie, aes(x = Week, y = H, color = H)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(50, 100)) + geom_smooth(se = FALSE) + xlab("Weeks of the Year") + ylab("Average Weekly Humidity") + labs(color = "PP")
 Week_vs_Humid
+
+ggsave(filename = "../../results/Week_vs_Humid.png",plot = Week_vs_Humid) 
+
 ```
 
 Next, Windspeed. Windspeed might be an odd one to examine, but I am interested in looking at how Windspeed might play a role as a deterant for vectors.
 
 ```{r Seasonal Windspeed Changes}
-Year_vs_Windspeed <- ggplot(colmozzie, aes(x = Year, y = V, color = V)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 30)) + geom_smooth(se = FALSE) + xlab("Year") + ylab("Average Weekly Windspeed") + labs(color = "PP")
+Year_vs_Windspeed <- ggplot(colmozzie, aes(x = Year, y = V, color = V)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 15)) + geom_smooth(se = FALSE) + xlab("Year") + ylab("Average Weekly Windspeed") + labs(color = "PP")
 Year_vs_Windspeed
 
-WeekCont_vs_Windspeed <- ggplot(colmozzie, aes(x = Week_Continuous, y = V, color = V)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 30)) + geom_smooth(se = FALSE) + xlab("Weeks From 2009 to 2014") + ylab("Average Weekly Windspeed") + labs(color = "PP")
+ggsave(filename = "../../results/Year_vs_Windspeed.png",plot = Year_vs_Windspeed) 
+
+WeekCont_vs_Windspeed <- ggplot(colmozzie, aes(x = Week_Continuous, y = V, color = V)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 15)) + geom_smooth(se = FALSE) + xlab("Weeks From 2009 to 2014") + ylab("Average Weekly Windspeed") + labs(color = "PP")
 WeekCont_vs_Windspeed
 
-Week_vs_Windspeed <- ggplot(colmozzie, aes(x = Week, y = V, color = V)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 30)) + geom_smooth(se = FALSE) + xlab("Weeks of the Year") + ylab("Average Weekly HWindspeed") + labs(color = "PP")
+ggsave(filename = "../../results/WeekCont_vs_Windspeed.png",plot = WeekCont_vs_Windspeed) 
+
+Week_vs_Windspeed <- ggplot(colmozzie, aes(x = Week, y = V, color = V)) + geom_jitter(alpha = 0.25) + scale_y_continuous(limits=c(0, 15)) + geom_smooth(se = FALSE) + xlab("Weeks of the Year") + ylab("Average Weekly Windspeed") + labs(color = "PP")
 Week_vs_Windspeed
+
+ggsave(filename = "../../results/Week_vs_Windspeed.png",plot = Week_vs_Windspeed) 
+
 ```
 
 So far, everything seems to line up rather well with Seasonal expectancies. 

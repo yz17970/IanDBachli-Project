@@ -48,8 +48,7 @@ Another useful check is to see if there are strong correlations between some of 
 Depending on the data and question, we might want to reserve some of the data for a final validation/testing step or not. Here, to illustrate this process and the idea of reserving some data for the very end, we'll split things into a train and test set. All the modeling will be done with the train set, and final evaluation of the model(s) happens on the test set. We use the `caret` package for this. 
 
 ```{r split-data}
-#this code does the data splitting. I still assume that your data is stored in the `d` object.
-#uncomment to run
+#this code does the data splitting.
 set.seed(123)
 trainset <- caret::createDataPartition(y = colmozzie$Cases, p = 0.7, list = FALSE)
 data_train = colmozzie[trainset,] #extract observations/rows for training, assign to new variable
@@ -127,19 +126,6 @@ nzerov[nzerov$nzerov,][1:10,]
 dim(data_train)
 ```
 
-You'll see that several variables are flagged as having near-zero variance. Look for instance at `Deaths`, you'll see that almost all outbreaks have zero deaths. It is a judgment call if we should remove all those flagged as near-zero-variance or not. For this exercise, we will.
-
-
-```{r}
-#write code that removes all variables with near zero variance from the data 
-nzerov <- nearZeroVar(data_train)
-FDT <- data_train[, -nzerov]
-dim(FDT)
-```
-
-You should be left with 13 variables (including the outcome).
-
-
 Next, we noticed during our exploratory analysis that it might be useful to center and scale predictors. So let's do that now. With caret, one can do that by providing the `preProc` setting inside the `train` function. Set it to center and scale the data, then run the 3 models from above again.
 
 
@@ -191,6 +177,8 @@ ggplot()+
   geom_point(aes(x=data_train$Cases, y=fitted4$trainingData$.outcome))
 ggplot()+
   geom_point(aes(y=resid(fitted4), x=data_train$Cases))
+
+ggsave(filename = "../../results/fitted4.png",plot = fitted4) 
 ```
 
 Both plots look ok, predicted vs. outcome is along the 45-degree line, and the residual plot shows no major pattern.
@@ -204,12 +192,12 @@ Let's do a final check, evaluate the performance of our final model on the test 
 #Write code that computes model predictions and for test data, then compute SSR and RMSE.
 # Using this, https://cran.r-project.org/web/packages/ssr/vignettes/ssr-package-vignette.html, seems to be pretty close to what we are looking for.
 #Write code that computes model predictions and for test data, then compute SSR and RMSE.
-finalfitted <- train(colmozzie, data=data_test,method="knn", trControl = fitControl)
+finalfitted <- train(Cases~., data=data_test,method="knn", trControl = fitControl)
 finalfitted
 plot(finalfitted)
 
 testSSR<-sum((finalfitted$trainingData$.outcome-mean(finalfitted$trainingData$.outcome))^2)
-std.error(resid(fitkrfinal))
+std.error(resid(fitted4))
 y_train <- data_train$Cases
 SSR_y_train <- sum((y_train-mean(y_train))^2)
 cor(fitted(fitted4), y_train)^2
@@ -218,10 +206,15 @@ pred_test <- predict(finalfitted, newdata = data_test)
 y_test <- data_test$Cases
 SSR_y_test <- sum((y_test-mean(y_test))^2)
 cor(pred_test, y_test)^2
-1- 28* var(pred_test-y_test)/SSR_y_train
-1- 28* var(pred_test-y_test)/SSR_y_test
+1- 13* var(pred_test-y_test)/SSR_y_train
+1- 13* var(pred_test-y_test)/SSR_y_test
+
+ggsave(filename = "../../results/finalfitted.png",plot = finalfitted) 
 ```
 
 Since we have a different number of observations, the result isn't expected to be quite the same as for the training data (despite dividing by sample size to account for that). But it's fairly close, and surprisingly not actually worse. So the KNN model seems to be reasonable at predicting. Now if its performance is 'good enough' is a scientific question.
+
+
+
 
 
