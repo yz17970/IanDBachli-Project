@@ -9,7 +9,7 @@ documentclass: article
 output:
   bookdown::word_document2: 
     toc: false
-bibliography: ../references.bib
+bibliography: ../Bibtex_References.bib
 csl: ../apa.csl
 ---
 
@@ -35,10 +35,6 @@ _Which variable/variables are the best indicators for Dengue?_
 
 _Can the indicators for Dengue be applied to similar ecosystems across the world devoid of Dengue if the vector was introduced to that area to provide an example as to how many cases of Dengue in those areas we would see?_
 
-_Does Maximum Sustained Wind Speed play a role in lower Dengue cases?_
-
-_How does Sea Level Pressure affect Dengue and its Vector?_
-
 _Do Changes in Temperature in tropical/subtropical zones effect the Vector spreading Dengue?_
 
 _Does Precipitation attribute to higher Dengue cases?_
@@ -49,7 +45,7 @@ _What additional variables would be beneficial to include in the dataset for fut
 The data was provided by Thiyanga Talagala taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. Data was further cleaned by myself to better fit my analysis. Data was analyzed using R Studio software and various R packages listed throughout the repository provided by Github. Methods will include examining the variables in detail to see which ones are the best predictors and indicators for Dengue. Comparing each other variable to the number of cases of Dengue provides us with some ideas on what variables seem to have the most weight when it comes to identifying Dengue predictors, or at least which variables correlate with the number of Cases of Dengue.
 
 ## Data Aquisition, Import, and Cleaning
-The data was provided by Thiyanga Talagala, and published in 2018, taken from the weekly epidemiological reports published by the Epidemiological Unit, Ministry of Health, Sri Lanka. You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie). Due to the fact our data was very clean from the start, we did not require a lot of script to purify our data. I did add an additional variable that counts the weeks in a continous fashion in order to examine the data over the course of the years of collection. You can examine the cleaning script in the code folder inside the DengueProcessing_cleaning.Rmd.
+You can find the link to the data [here](https://CRAN.R-project.org/package=colmozzie). Due to the fact our data was very clean from the start, we did not require a lot of script to purify our data. I did add an additional variable that counts the weeks in a continous fashion in order to examine the data over the course of the years of collection. You can examine the cleaning script in the code folder inside the DengueProcessing_cleaning.Rmd.
 
 ## Univariate analysis
 An Exploratory analysis of the cleaned Dengue dataset shows some general trends across the variables measured against the number of Cases of Dengue reported each week, and identifies specific aspects of the code that possibly warrant a deeper analysis. Each variable we examined was compared to the Reported Number of Dengue Cases Weekly, as we are searching for trends among what variables may attribute to a higher percentage of Cases of Dengue.
