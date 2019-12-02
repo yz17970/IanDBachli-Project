@@ -226,6 +226,9 @@ _Windspeed various across the span of the study, with a slight increase from Wee
 
 
 ## Full Analysis
+
+Work in Progess, Figures won't load.
+
 _Use one or several suitable statistical/machine learning methods to analyze your data and to produce meaningful figures, tables, etc. This might again be code that is best placed in one or several separate R scripts that need to be well documented. You can then load the results produced by this code_
 
 # Discussion
