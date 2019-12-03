@@ -201,6 +201,7 @@ Let's do a final check, evaluate the performance of our final model on the test 
 #Write code that computes model predictions and for test data, then compute SSR and RMSE.
 finalfitted <- train(Cases~., data=data_test,method="lm", trControl = fitControl)
 finalfitted
+
 plot(finalfitted)
 
 testSSR<-sum((finalfitted$trainingData$.outcome-mean(finalfitted$trainingData$.outcome))^2)
@@ -221,6 +222,9 @@ ggsave(filename = "../../results/finalfitted.png",plot = finalfitted)
 
 Since we have a different number of observations, the result isn't expected to be quite the same as for the training data (despite dividing by sample size to account for that). But it's fairly close, and surprisingly not actually worse. So the KNN model seems to be reasonable at predicting. Now if its performance is 'good enough' is a scientific question.
 
+```{r}
+plot(Cases, Week)
+```
 
 
 

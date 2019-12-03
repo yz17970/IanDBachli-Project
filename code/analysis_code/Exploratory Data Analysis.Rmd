@@ -113,7 +113,7 @@ Let's check out the number of Cases in Comparison to the Sea Level Pressure.
 ```{r}
 colmozzie %>% ggplot() + 
   geom_jitter(aes(x = Cases, y = SLP))
-Cases_v_SLP <- ggplot(colmozzie, aes(x = Cases, y = SLP, color = Cases)) + geom_violin(width = .50) + geom_jitter(alpha = 0.50) + ggtitle("Cases vs Sea Level Pressure") + xlab("Cases") + ylab("Sea Level Pressure") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
+Cases_v_SLP <- ggplot(colmozzie, aes(x = Cases, y = SLP, color = Cases)) + geom_jitter(alpha = 0.25) + ggtitle("Cases vs Sea Level Pressure") + xlab("Cases") + ylab("Sea Level Pressure") + theme(legend.position = "none", axis.text.x = element_text(face = "bold"))
 
 Cases_v_SLP
 
