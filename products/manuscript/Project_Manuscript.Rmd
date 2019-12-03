@@ -123,7 +123,7 @@ _We can see that there are only a few strong positive correlations among our var
 
 
 ### Climate Condition Comparisons
-_For the first part of this analysis, we will examine a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V). We are looking for any general trends among these climate conditions._
+_For the first part of this analysis, we examined a few variables against each other: Average temperature of the week (TEM), Relative humidity (H), Precipitation Level (PP), and Mean wind speed (V). We are looking for any general trends among these climate conditions._
 
 ```{r 12Fig, fig.cap="Comparison of Average Temperature versus Average Precipitation.", echo=FALSE}
 knitr::include_graphics("../../results/Temp_vs_Precip.png")
