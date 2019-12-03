@@ -134,9 +134,9 @@ Next, we noticed during our exploratory analysis that it might be useful to cent
 #write code that repeats the multi-predictor fits from above, but this time applies centering and scaling of variables.
 #look at the RMSE for the new fits
 #For `earth` method
-fitearth2 <- train(Cases~., data=colmozzie,method="earth", trControl = fitControl,
-                preProc = c("center","scale"))
-fitearth2
+#fitearth2 <- train(Cases~., data=colmozzie,method="earth", trControl = fitControl,
+                #preProc = c("center","scale"))
+#fitearth2
 #For `lm` method
 fitlm2 <- train(Cases~., data=colmozzie,method="lm", trControl = fitControl,
                 preProc = c("center","scale"))
@@ -172,20 +172,20 @@ For this exercise, let's just pick one model. We'll go with the best performing 
 ```{r}
 #Write code to get model predictions for the outcome on the training data, and plot it as function of actual outcome values.
 #also compute residuals (the difference between prediction and actual outcome) and plot that.
-fitted4 <- train(Cases~., data=data_train,method="knn", trControl = fitControl)
+fitted4 <- train(Cases~., data=data_train,method="lm", trControl = fitControl)
 fitted4
 ggplot()+
   geom_point(aes(x=data_train$Cases, y=fitted4$trainingData$.outcome))
 ggplot()+
   geom_point(aes(y=resid(fitted4), x=data_train$Cases))
 
-KNNResidualPlot <- fitted4
+LMResidualPlot <- fitted4
 
-png("KNNResidualPlot.png", width = 600, height = 600)
-print (KNNResidualPlot)
+png("LMResidualPlot.png", width = 600, height = 600)
+print (LMResidualPlot)
 dev.off()
 
-file_move("./KNNResidualPlot.png", "../../results/KNNResidualPlot.png")
+#file_move("./LMResidualPlot.png", "../../results/LMResidualPlot.png")
 ```
 
 Both plots look ok, predicted vs. outcome is along the 45-degree line, and the residual plot shows no major pattern.
@@ -199,7 +199,7 @@ Let's do a final check, evaluate the performance of our final model on the test 
 #Write code that computes model predictions and for test data, then compute SSR and RMSE.
 # Using this, https://cran.r-project.org/web/packages/ssr/vignettes/ssr-package-vignette.html, seems to be pretty close to what we are looking for.
 #Write code that computes model predictions and for test data, then compute SSR and RMSE.
-finalfitted <- train(Cases~., data=data_test,method="knn", trControl = fitControl)
+finalfitted <- train(Cases~., data=data_test,method="lm", trControl = fitControl)
 finalfitted
 plot(finalfitted)
 

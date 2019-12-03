@@ -19,7 +19,7 @@ _Dengue is often regarded globally as the most important mosquito-borne viral di
 
 # Introduction
 
-## General Background Information
+## General Background Information 
 Dengue is a disease caused by a family of viruses transmitted to people through the bite of an infected Aedes species (Ae. aegypti or Ae. albopictus) mosquito. Symptoms of Dengue fever include severe joint and muscle pain, swollen lymph nodes, headache, fever, exhaustion, and rash. The presence of fever, rash, and headache (the "Dengue Triad") is characteristic of dengue fever. Each year, up to 400 million people get infected with Dengue. Approximately 100 million people get sick from infection, and 22,000 die from severe Dengue. Dengue is caused by one of any of four related viruses: Dengue virus 1, 2, 3, and 4.  For this reason, a person can be infected with a Dengue virus as many as four times within their lifetime. Dengue virus is prevalent throughout the tropics and subtropics; being common in over 100 countries in the world. Forty percent of the world’s population, about 3 billion people, live in areas with a risk of Dengue. Because of this, Dengue is often a leading cause of illness in areas with risk. It is clear that Dengue places a significant socioeconomic and disease burden on many tropical and subtropical regions of the world. It is currently regarded as the most important arboviral disease internationally as over 50% of the world’s population live in areas where they are at risk of the disease, and approximately 50% live in dengue endemic countries.
 Dengue outbreaks occur in many countries around the world, varied among the Americas, Africa, the Middle East, Asia, and the Pacific Islands. Many of these countries at risk are below an elevation of 6,500 feet. Sri Lanka is among the countries in which the Center for Disease Control labels Frequent/Continuous for the number of outbreaks of Dengue year to year. In 2010, the WHO reported 26,824 Cases of Dengue in Sri Lanka, leading to a reported 192 Deaths. In a more recent account in Sri Lanka, there were 180,000 reported cases in 2017; the majority of cases being reported from the Western province. The highest numbers of Dengue cases were reported during the 20th week of 2017. Sri Lankan health authorities warned that the country was facing a Dengue epidemic with at least 301 patients dead. It is clearly evident from data collated by WHO that, in South East Asia, an overall expansion of dengue has occurred over the last decade. In 2003, eight countries in SEA had reported cases of dengue and, by 2009, all SEA member countries excluding the Democratic People’s Republic of Korea reported indigenous cases. Epidemics continue to persist on regular 3–5 year cycles throughout SEA, and the number of reported cases continues to increase along with the severity of cases in many member countries.
 
@@ -148,7 +148,7 @@ knitr::include_graphics("../../results/Precip_vs_MeanWS.png")
 ```
 
 ```{r 17Fig, fig.cap="Comparison of Relative Humidity versus Average Precipitation.", echo=FALSE}
-knitr::include_graphics("../../results/Humid_v_Precip.png")
+knitr::include_graphics("../../results/Humid_vs_Precip.png")
 ```
 
 ```{r 18Fig, fig.cap="Comparison of Relative Humidity versus Mean Windspeed.", echo=FALSE}
@@ -256,25 +256,4 @@ _Include citations in your Rmd file using bibtex, the list of references will au
 
 # References
 
-# Illustrating setup
-_This section is only there to show how to insert results from other places in the project and how to cite figures and other references. Delete this whole section at some point._
 
-
-This paper [@Leek2015a] discusses types of analyses. 
-
-
-Figure \@ref(fig:resultfigure) shows a result figure from the analysis.
-
-```{r resultfigure,  fig.cap='Analysis figure.', echo=FALSE}
-knitr::include_graphics("../../results/resultfigure.png")
-```
-
-Table \@ref(tab:resulttable) shows a result table from the analysis.
-
-```{r resulttable,  echo=FALSE}
-resulttable=readRDS("../../results/resulttable.rds")
-knitr::kable(resulttable, caption = 'Result Table.')
-```
-
-
-Note that this cited reference will show up at the end of the document, the reference formatting is determined by the CSL file specified in the YAML header. Many more style files for almost any journal [are available](https://www.zotero.org/styles). You also specify the location of your bibtex reference file in the YAML. You can call your reference file anything you like, I just used the generic word `references.bib` but giving it a more descriptive name is probably better.
