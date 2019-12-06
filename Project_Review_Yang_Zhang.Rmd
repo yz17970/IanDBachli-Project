@@ -1,0 +1,88 @@
+# Overview
+
+Title of project: A data Analysis project
+
+Author of project: Ian Bachli
+
+## Background, Context and Motivation
+I really appreciate the background information given in the "General background information" as I do not have much previous knowledge on Dengus. However, I feel the background information is too much, involving a lot of unnecessary information. I would point out the severity of this disease briefly, and therefore the importance to stufy it. In the latter part of this section, the author then switched to introducing Sir Lanka. Again, he gave some specific numbers, which I don't find very necessary.  
+
+### Summary assessment
+* some contextualization and motivation
+
+## Question description
+In the "Question/hypotheses to be addressed" section, the author put some questions there. It is very nice that he could study these questions using the data. They are pretty clearly stated. But they need to be organized and presented in a better way so that the readers know why you study them, and what the rationale to study them. 
+
+### Summary assessment
+* question/hypotheses somewhat explained
+
+## Data description
+in the "Description of Data & Data Source" section, the data is clearly described. 
+There is a very minor issue: "An additional variable was added by myself , named “Week Continuous”, to show a full timescale of changes across the years, week by week." The author used "myself" here, which is inconsistent with "we" used in the rest of the paper. 
+
+### Summary assessment
+* source and overall structure of data well explained
+
+## Data wrangling and exploratory analysis
+The original data set is clean, and further data cleanning was not required. 
+I like the graphs in the "Univariant analysis" section, but better to provide some summary sentences to what you found with these plots. Some statements in the figure legends can be moved to these summary sentences. 
+For the bivariant analysis, the figure is confusing. If there is no conclusion can be drawn from the plot, probably should remove it? I don't quite understand what the purpose for this analysis.
+Also, the abbreviations on the x-, y-axis should be in the figure legend. 
+The author provided a definition for bivariant analysis, which is not necessary.  
+
+### Summary assessment
+* some weaknesses in wrangling and exploratory component
+
+## Appropriateness of Analysis
+The analyses are appropriate. 
+
+### Summary assessment
+* strong and reasonable analysis
+
+## Presentation
+I like that the author did a lot of analysis and generated a lot of figures. However, I think the figures can be organized in a better way. Also, some descriptive sentences are needed to illustrate what conclusions you could draw from each figure and how you drew it. 
+
+### Summary assessment
+* results are presented ok, with room for improvement
+
+## Discussion/Conclusions
+In the "Climate condition comparison" section, I don't know what the purpose of this section. Also, the conclusion you get from figure 12-17 does not seem to relate to the question you want to study. 
+I like your "Interpretation" in the discussion section: "higher levels of precipitation lead to more bodies of water capable of housing Mosquito larvae, thus attributing to more mosquitos suriving and being able to act as more vectors for Dengue to spread from person to person". I think it makes sense. 
+For the strength, "A great strength in the analysis  was being able to have consistant data across a long period of time without any unavailable data for each variable from week to week." I don't think it is a strength in the analysis, but the strength in the data. I think there is better way to say it. 
+For the limitation, I think it is not well addressed. I think you can be more specific. 
+
+### Summary assessment
+* minor parts wrong, missing or unclear
+
+# Overall project content evaluation
+
+## Structure
+some files from the template shuld be deleted. no slide in the slide folder. should be deleted. Other than that, the project is well-structured. 
+
+### Summary assessment
+* mostly clear, but some confusing parts (e.g. useless files, things in the wrong folders)
+
+## Documentation 
+The projetc is well-documented. I can understand each step of the whole analysis and line of code. enough information is provided as comments in code. 
+
+### Summary assessment
+* fully and well documented
+
+## Reproducibility
+The analysis is reproducible. 
+
+### Summary assessment
+* fully reproducible without issues
+
+
+## Thoroughness
+I think it is pretty good overall, given the analysis done and figures generated. It is a solide manuscript. but figures and conclusions need to be presented in a better way. 
+
+### Summary assessment
+* decent level of thoroughness
+
+
+
+
+
+
